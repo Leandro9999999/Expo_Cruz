@@ -35,7 +35,7 @@ const Nosotros = () => {
         <div className="flex-1 w-full h-[300px] md:h-[450px] relative">
           <div className="absolute inset-0 border-4 border-white/5 rounded-[2rem] z-10 pointer-events-none" />
           <Image
-            src="/img/2.png"
+            src="/img/camion2.png"
             alt="Dieselsoft Team Work"
             fill
             className="object-cover rounded-[2rem] shadow-2xl"
