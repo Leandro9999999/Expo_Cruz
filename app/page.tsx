@@ -4,8 +4,18 @@ import Image from "next/image";
 import { motion, AnimatePresence } from "framer-motion";
 import Nosotros from "./Components/Nosotros";
 import Productos from "./Components/Productos";
+
 export default function Home() {
   const [activeTab, setActiveTab] = useState("inicio");
+  // Estado para abrir y cerrar el menú móvil
+  const [menuOpen, setMenuOpen] = useState(false);
+
+  // Función para cambiar de sección y cerrar el menú móvil al mismo tiempo
+  const handleTabChange = (tab: string) => {
+    setActiveTab(tab);
+    setMenuOpen(false);
+  };
+
   const renderContent = () => {
     switch (activeTab) {
       case "inicio":
@@ -156,13 +166,16 @@ export default function Home() {
         />
       </div>
 
-      <nav className="relative z-20 flex justify-between items-center px-10 py-8 md:px-16">
+      {/* Barra de Navegación */}
+      <nav className="relative z-30 flex justify-between items-center px-10 py-8 md:px-16">
         <div
           className="text-3xl regular tracking-[0.1em] cursor-pointer"
-          onClick={() => setActiveTab("inicio")}
+          onClick={() => handleTabChange("inicio")}
         >
           DIESELSOFT<span className="text-sm align-right">.srl</span>
         </div>
+
+        {/* Menú de Computadora (Escritorio) */}
         <div className="hidden md:flex space-x-10 text-[15px] tracking-[0.1em] font-bold">
           <button
             onClick={() => setActiveTab("nosotros")}
@@ -184,7 +197,90 @@ export default function Home() {
           </button>
           <button className="hover:opacity-60 transition">CONTACTO</button>
         </div>
+
+        {/* Botón Hamburguesa (Solo en móviles) */}
+        <button
+          onClick={() => setMenuOpen(!menuOpen)}
+          className="md:hidden flex flex-col justify-center items-center gap-1.5 w-10 h-10 z-50 relative focus:outline-none"
+          aria-label="Abrir menú"
+        >
+          <span
+            className={`block h-0.5 w-6 bg-white transition-all duration-300 ${
+              menuOpen ? "rotate-45 translate-y-2" : ""
+            }`}
+          />
+          <span
+            className={`block h-0.5 w-6 bg-white transition-all duration-300 ${
+              menuOpen ? "opacity-0" : ""
+            }`}
+          />
+          <span
+            className={`block h-0.5 w-6 bg-white transition-all duration-300 ${
+              menuOpen ? "-rotate-45 -translate-y-2" : ""
+            }`}
+          />
+        </button>
       </nav>
+
+      {/* Menú Desplegable Móvil */}
+      <AnimatePresence>
+        {menuOpen && (
+          <motion.div
+            initial={{ opacity: 0, y: -20 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -20 }}
+            transition={{ duration: 0.3 }}
+            className="fixed inset-0 bg-black/90 backdrop-blur-2xl z-20 flex flex-col items-center justify-center space-y-8 text-lg tracking-[0.15em] font-bold md:hidden"
+          >
+            <button
+              onClick={() => handleTabChange("inicio")}
+              className={`hover:text-red-400 transition uppercase ${
+                activeTab === "inicio"
+                  ? "text-red-500 border-b border-red-500"
+                  : ""
+              }`}
+            >
+              INICIO
+            </button>
+            <button
+              onClick={() => handleTabChange("nosotros")}
+              className={`hover:text-red-400 transition uppercase ${
+                activeTab === "nosotros"
+                  ? "text-red-500 border-b border-red-500"
+                  : ""
+              }`}
+            >
+              SOBRE NOSOTROS
+            </button>
+            <button
+              onClick={() => handleTabChange("servicios")}
+              className={`hover:text-red-400 transition uppercase ${
+                activeTab === "servicios"
+                  ? "text-red-500 border-b border-red-500"
+                  : ""
+              }`}
+            >
+              SERVICIOS
+            </button>
+            <button
+              onClick={() => handleTabChange("productos")}
+              className={`hover:text-red-400 transition uppercase ${
+                activeTab === "productos"
+                  ? "text-red-500 border-b border-red-500"
+                  : ""
+              }`}
+            >
+              PRODUCTOS
+            </button>
+            <button
+              onClick={() => setMenuOpen(false)}
+              className="hover:text-red-400 transition uppercase"
+            >
+              CONTACTO
+            </button>
+          </motion.div>
+        )}
+      </AnimatePresence>
 
       <div className="flex-1 flex flex-col items-center justify-center text-center px-4 -mt-10 relative z-20">
         <AnimatePresence mode="wait">
