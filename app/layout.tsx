@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import localFont from "next/font/local";
 import { Archivo_Black } from "next/font/google";
+import Script from "next/script"; // <-- Agregado para Google Analytics
 import "./globals.css";
 
 const volvoFont = localFont({
@@ -29,6 +30,20 @@ export default function RootLayout({
   return (
     <html lang="es">
       <body className={`${volvoFont.variable} ${archivo.variable} antialiased`}>
+        {/* Scripts de Google Analytics */}
+        <Script
+          src="https://www.googletagmanager.com/gtag/js?id=G-TX18REQB8E"
+          strategy="afterInteractive"
+        />
+        <Script id="google-analytics" strategy="afterInteractive">
+          {`
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+            gtag('config', 'G-TX18REQB8E');
+          `}
+        </Script>
+
         {children}
       </body>
     </html>
