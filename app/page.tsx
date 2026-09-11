@@ -7,10 +7,9 @@ import Productos from "./Components/Productos";
 
 export default function Home() {
   const [activeTab, setActiveTab] = useState("inicio");
-  // Estado para abrir y cerrar el menú móvil
   const [menuOpen, setMenuOpen] = useState(false);
 
-  // Función para cambiar de sección y cerrar el menú móvil al mismo tiempo
+  // Cambia de sección y cierra el menú lateral
   const handleTabChange = (tab: string) => {
     setActiveTab(tab);
     setMenuOpen(false);
@@ -167,121 +166,155 @@ export default function Home() {
       </div>
 
       {/* Barra de Navegación */}
-      <nav className="relative z-30 flex justify-between items-center px-10 py-8 md:px-16">
-        <div
-          className="text-3xl regular tracking-[0.1em] cursor-pointer"
-          onClick={() => handleTabChange("inicio")}
-        >
-          DIESELSOFT<span className="text-sm align-right">.srl</span>
+      <nav className="relative z-30 flex items-center justify-between px-6 py-6 md:px-16">
+        {/* Lado Izquierdo: Botón Hamburguesa (Móvil) + Logo */}
+        <div className="flex items-center gap-4">
+          <button
+            onClick={() => setMenuOpen(!menuOpen)}
+            className="md:hidden flex flex-col justify-center items-center gap-1.5 w-10 h-10 focus:outline-none z-50 cursor-pointer"
+            aria-label="Menú"
+          >
+            <span
+              className={`block h-0.5 w-6 bg-white transition-all duration-300 ${
+                menuOpen ? "rotate-45 translate-y-2" : ""
+              }`}
+            />
+            <span
+              className={`block h-0.5 w-6 bg-white transition-all duration-300 ${
+                menuOpen ? "opacity-0" : ""
+              }`}
+            />
+            <span
+              className={`block h-0.5 w-6 bg-white transition-all duration-300 ${
+                menuOpen ? "-rotate-45 -translate-y-2" : ""
+              }`}
+            />
+          </button>
+
+          <div
+            className="text-2xl md:text-3xl regular tracking-[0.1em] cursor-pointer"
+            onClick={() => handleTabChange("inicio")}
+          >
+            DIESELSOFT<span className="text-sm align-right">.srl</span>
+          </div>
         </div>
 
         {/* Menú de Computadora (Escritorio) */}
         <div className="hidden md:flex space-x-10 text-[15px] tracking-[0.1em] font-bold">
           <button
             onClick={() => setActiveTab("nosotros")}
-            className={`hover:opacity-60 transition ${activeTab === "nosotros" ? "border-b border-white" : ""}`}
+            className={`hover:opacity-60 transition cursor-pointer ${
+              activeTab === "nosotros" ? "border-b border-white" : ""
+            }`}
           >
             SOBRE NOSOTROS
           </button>
           <button
             onClick={() => setActiveTab("servicios")}
-            className={`hover:opacity-60 transition ${activeTab === "servicios" ? "border-b border-white" : ""}`}
+            className={`hover:opacity-60 transition cursor-pointer ${
+              activeTab === "servicios" ? "border-b border-white" : ""
+            }`}
           >
             SERVICIOS
           </button>
           <button
             onClick={() => setActiveTab("productos")}
-            className={`hover:opacity-60 transition ${activeTab === "productos" ? "border-b border-white" : ""}`}
+            className={`hover:opacity-60 transition cursor-pointer ${
+              activeTab === "productos" ? "border-b border-white" : ""
+            }`}
           >
             PRODUCTOS
           </button>
-          <button className="hover:opacity-60 transition">CONTACTO</button>
+          <button className="hover:opacity-60 transition cursor-pointer">
+            CONTACTO
+          </button>
         </div>
-
-        {/* Botón Hamburguesa (Solo en móviles) */}
-        <button
-          onClick={() => setMenuOpen(!menuOpen)}
-          className="md:hidden flex flex-col justify-center items-center gap-1.5 w-10 h-10 z-50 relative focus:outline-none"
-          aria-label="Abrir menú"
-        >
-          <span
-            className={`block h-0.5 w-6 bg-white transition-all duration-300 ${
-              menuOpen ? "rotate-45 translate-y-2" : ""
-            }`}
-          />
-          <span
-            className={`block h-0.5 w-6 bg-white transition-all duration-300 ${
-              menuOpen ? "opacity-0" : ""
-            }`}
-          />
-          <span
-            className={`block h-0.5 w-6 bg-white transition-all duration-300 ${
-              menuOpen ? "-rotate-45 -translate-y-2" : ""
-            }`}
-          />
-        </button>
       </nav>
 
-      {/* Menú Desplegable Móvil */}
+      {/* Menú Lateral que Sale desde la Izquierda (Móvil) */}
       <AnimatePresence>
         {menuOpen && (
-          <motion.div
-            initial={{ opacity: 0, y: -20 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -20 }}
-            transition={{ duration: 0.3 }}
-            className="fixed inset-0 bg-black/90 backdrop-blur-2xl z-20 flex flex-col items-center justify-center space-y-8 text-lg tracking-[0.15em] font-bold md:hidden"
-          >
-            <button
-              onClick={() => handleTabChange("inicio")}
-              className={`hover:text-red-400 transition uppercase ${
-                activeTab === "inicio"
-                  ? "text-red-500 border-b border-red-500"
-                  : ""
-              }`}
-            >
-              INICIO
-            </button>
-            <button
-              onClick={() => handleTabChange("nosotros")}
-              className={`hover:text-red-400 transition uppercase ${
-                activeTab === "nosotros"
-                  ? "text-red-500 border-b border-red-500"
-                  : ""
-              }`}
-            >
-              SOBRE NOSOTROS
-            </button>
-            <button
-              onClick={() => handleTabChange("servicios")}
-              className={`hover:text-red-400 transition uppercase ${
-                activeTab === "servicios"
-                  ? "text-red-500 border-b border-red-500"
-                  : ""
-              }`}
-            >
-              SERVICIOS
-            </button>
-            <button
-              onClick={() => handleTabChange("productos")}
-              className={`hover:text-red-400 transition uppercase ${
-                activeTab === "productos"
-                  ? "text-red-500 border-b border-red-500"
-                  : ""
-              }`}
-            >
-              PRODUCTOS
-            </button>
-            <button
+          <>
+            {/* Fondo oscuro para cerrar al hacer clic afuera */}
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
               onClick={() => setMenuOpen(false)}
-              className="hover:text-red-400 transition uppercase"
+              className="fixed inset-0 bg-black/70 backdrop-blur-sm z-40 md:hidden"
+            />
+
+            {/* Panel Lateral que se despliega desde la izquierda */}
+            <motion.div
+              initial={{ x: "-100%" }}
+              animate={{ x: 0 }}
+              exit={{ x: "-100%" }}
+              transition={{ type: "tween", duration: 0.3 }}
+              className="fixed top-0 left-0 bottom-0 w-72 bg-black/90 backdrop-blur-xl border-r border-white/10 z-50 flex flex-col p-8 md:hidden"
             >
-              CONTACTO
-            </button>
-          </motion.div>
+              <div className="text-xl font-bold tracking-widest mb-12 border-b border-white/10 pb-4">
+                MENÚ
+              </div>
+
+              <div className="flex flex-col space-y-6 text-left text-sm tracking-widest font-bold">
+                <button
+                  type="button"
+                  onClick={() => handleTabChange("inicio")}
+                  className={`text-left transition uppercase py-2 cursor-pointer ${
+                    activeTab === "inicio"
+                      ? "text-red-500 border-l-2 border-red-500 pl-3"
+                      : "text-white/80 hover:text-white"
+                  }`}
+                >
+                  INICIO
+                </button>
+                <button
+                  type="button"
+                  onClick={() => handleTabChange("nosotros")}
+                  className={`text-left transition uppercase py-2 cursor-pointer ${
+                    activeTab === "nosotros"
+                      ? "text-red-500 border-l-2 border-red-500 pl-3"
+                      : "text-white/80 hover:text-white"
+                  }`}
+                >
+                  SOBRE NOSOTROS
+                </button>
+                <button
+                  type="button"
+                  onClick={() => handleTabChange("servicios")}
+                  className={`text-left transition uppercase py-2 cursor-pointer ${
+                    activeTab === "servicios"
+                      ? "text-red-500 border-l-2 border-red-500 pl-3"
+                      : "text-white/80 hover:text-white"
+                  }`}
+                >
+                  SERVICIOS
+                </button>
+                <button
+                  type="button"
+                  onClick={() => handleTabChange("productos")}
+                  className={`text-left transition uppercase py-2 cursor-pointer ${
+                    activeTab === "productos"
+                      ? "text-red-500 border-l-2 border-red-500 pl-3"
+                      : "text-white/80 hover:text-white"
+                  }`}
+                >
+                  PRODUCTOS
+                </button>
+                <button
+                  type="button"
+                  onClick={() => setMenuOpen(false)}
+                  className="text-left text-white/80 hover:text-white transition uppercase py-2 cursor-pointer"
+                >
+                  CONTACTO
+                </button>
+              </div>
+            </motion.div>
+          </>
         )}
       </AnimatePresence>
 
+      {/* Contenido Principal */}
       <div className="flex-1 flex flex-col items-center justify-center text-center px-4 -mt-10 relative z-20">
         <AnimatePresence mode="wait">
           <div key={activeTab}>{renderContent()}</div>
