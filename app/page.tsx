@@ -9,7 +9,6 @@ export default function Home() {
   const [activeTab, setActiveTab] = useState("inicio");
   const [menuOpen, setMenuOpen] = useState(false);
 
-  // Cambia de sección y cierra el menú lateral
   const handleTabChange = (tab: string) => {
     setActiveTab(tab);
     setMenuOpen(false);
@@ -97,19 +96,16 @@ export default function Home() {
             {serviciosDieselsoft.map((item) => (
               <div
                 key={item.id}
-                className="relative p-8 bg-gradient-to-b from-white/10 to-white/5 border border-white/10 rounded-2xl hover:border-red-500/50 hover:bg-white/10 transition-all duration-300 flex flex-col justify-between group shadow-xl"
+                className="relative p-8 bg-gradient-to-b from-white/10 to-white/5 border border-white/10 rounded-2xl hover:border-white-500/50 hover:bg-white/10 transition-all duration-300 flex flex-col justify-between group shadow-xl"
               >
                 <div>
                   <div className="flex justify-between items-center mb-4">
-                    <span className="text-xs font-mono font-bold tracking-widest text-red-500 uppercase px-2 py-1 bg-red-500/10 rounded border border-red-500/20">
-                      {item.tag}
-                    </span>
-                    <span className="text-2xl font-black text-white/20 group-hover:text-red-500/40 transition">
+                    <span className="text-2xl font-black text-white/20 group-hover:text-white-500/40 transition">
                       {item.id}
                     </span>
                   </div>
 
-                  <h3 className="text-2xl tracking-[0.1em] text-white mb-1 group-hover:text-red-400 transition">
+                  <h3 className="text-2xl tracking-[0.1em] text-white mb-1 group-hover:text-white-400 transition">
                     {item.titulo}
                   </h3>
                   <p className="text-xs font-semibold text-white/50 mb-4 tracking-[0.1em]">
@@ -130,7 +126,7 @@ export default function Home() {
                           key={index}
                           className="flex items-center text-xs text-gray-300 tracking-[0.1em]"
                         >
-                          <span className="w-1.5 h-1.5 rounded-full bg-red-500 mr-2.5 shrink-0" />
+                          <span className="w-1.5 h-1.5 rounded-full bg-white mr-2.5 shrink-0" />
                           {punto}
                         </li>
                       ))}
@@ -165,9 +161,7 @@ export default function Home() {
         />
       </div>
 
-      {/* Barra de Navegación */}
       <nav className="relative z-30 flex items-center justify-between px-6 py-6 md:px-16">
-        {/* Lado Izquierdo: Botón Hamburguesa (Móvil) + Logo */}
         <div className="flex items-center gap-4">
           <button
             onClick={() => setMenuOpen(!menuOpen)}
@@ -199,7 +193,6 @@ export default function Home() {
           </div>
         </div>
 
-        {/* Menú de Computadora (Escritorio) */}
         <div className="hidden md:flex space-x-10 text-[15px] tracking-[0.1em] font-bold">
           <button
             onClick={() => setActiveTab("nosotros")}
@@ -231,11 +224,9 @@ export default function Home() {
         </div>
       </nav>
 
-      {/* Menú Lateral que Sale desde la Izquierda (Móvil) */}
       <AnimatePresence>
         {menuOpen && (
           <>
-            {/* Fondo oscuro para cerrar al hacer clic afuera */}
             <motion.div
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
@@ -244,7 +235,6 @@ export default function Home() {
               className="fixed inset-0 bg-black/70 backdrop-blur-sm z-40 md:hidden"
             />
 
-            {/* Panel Lateral que se despliega desde la izquierda */}
             <motion.div
               initial={{ x: "-100%" }}
               animate={{ x: 0 }}
@@ -314,7 +304,6 @@ export default function Home() {
         )}
       </AnimatePresence>
 
-      {/* Contenido Principal */}
       <div className="flex-1 flex flex-col items-center justify-center text-center px-4 -mt-10 relative z-20">
         <AnimatePresence mode="wait">
           <div key={activeTab}>{renderContent()}</div>
