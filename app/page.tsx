@@ -148,7 +148,7 @@ export default function Home() {
       <div className="absolute inset-0 -z-10">
         <div className="absolute inset-0 bg-black/60 z-10" />
         <Image
-          src="/img/3.png"
+          src="/img/camion1.png"
           alt="Dieselsoft"
           fill
           className="object-cover"
