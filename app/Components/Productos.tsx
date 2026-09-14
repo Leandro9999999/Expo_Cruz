@@ -47,7 +47,7 @@ const Productos = () => {
                   <h3 className="text-xl font-['Montserrat'] font-extrabold mb-4 tracking-wider">
                     {prod.titulo}
                   </h3>
-                  <p className="text-xs opacity-70 leading-relaxed uppercase font-['Montserrat'] tracking-widest">
+                  <p className="text-xs opacity-70 leading-relaxed  font-['Montserrat'] tracking-widest">
                     {prod.descripcionCorta}
                   </p>
                 </div>
@@ -82,7 +82,7 @@ const Productos = () => {
                     <div className="h-[2px] w-20 bg-white/20 mt-4" />
                   </div>
 
-                  <p className="text-sm md:text-base font-['Montserrat'] leading-relaxed tracking-wider uppercase opacity-90">
+                  <p className="text-sm md:text-base font-['Montserrat'] leading-relaxed tracking-wider  opacity-90">
                     {seleccionado.descripcionLarga}
                   </p>
 
