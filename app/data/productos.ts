@@ -22,6 +22,15 @@ export const LISTA_PRODUCTOS: Producto[] = [
     manualPdf2: "/pdf/SIMULADOR-VELOCIDAD.pdf",
     videoYoutube: "https://www.youtube.com/watch?v=TU_LINK",
   },
+  {
+    id: "Ecu Repair-1.",
+    titulo: "Ecu Repair-1.",
+    descripcionCorta: "NUESTRA SUITE INSIGNIA PARA CONTROL OPERACIONAL.",
+    descripcionLarga:
+      "Ecu Repair transforma imágenes técnicas en una experiencia interactiva. Permite localizar componentes, revisar conexiones, consultar esquemáticos y organizar información técnica en un solo lugar.",
+    imagenes: ["/img/Ecurepair.jfif"],
+    manualPdf1: "/pdf/Manual Ecu Repair-1.pdf",
+  },
 
   {
     id: "PROBADOR-VEB-EPG",
@@ -123,15 +132,5 @@ export const LISTA_PRODUCTOS: Producto[] = [
       "/img/software/TECHTOOL 2.8.175.png",
       "/img/software/TECHTOOL 2.8.360.png",
     ],
-  },
-
-  {
-    id: "Anulación de AdBlue DAF",
-    titulo: "Anulación de AdBlue DAF",
-    descripcionCorta: "NUESTRA SUITE INSIGNIA PARA CONTROL OPERACIONAL.",
-    descripcionLarga:
-      "¿Problemas con la válvula EGR o el límite de velocidad? En Dieselsoft optimizamos tu unidad por software: desactivamos la EGR para extender la vida útil del motor con aire limpio, liberamos la velocidad máxima y eliminamos códigos de error. Rendimiento al máximo sin piezas dañadas.",
-
-    imagenes: ["/img/4.png"],
   },
 ];
