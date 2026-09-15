@@ -28,7 +28,7 @@ export const LISTA_PRODUCTOS: Producto[] = [
     descripcionCorta: "NUESTRA SUITE INSIGNIA PARA CONTROL OPERACIONAL.",
     descripcionLarga:
       "Ecu Repair transforma imágenes técnicas en una experiencia interactiva. Permite localizar componentes, revisar conexiones, consultar esquemáticos y organizar información técnica en un solo lugar.",
-    imagenes: ["/img/Ecurepair.jfif"],
+    imagenes: ["/img/ecurepair.png"],
     manualPdf1: "/pdf/Manual Ecu Repair-1.pdf",
   },
 
