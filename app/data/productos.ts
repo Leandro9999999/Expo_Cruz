@@ -114,7 +114,13 @@ export const LISTA_PRODUCTOS: Producto[] = [
     descripcionCorta: "NUESTRA SUITE INSIGNIA PARA CONTROL OPERACIONAL.",
     descripcionLarga:
       "TechTool es una plataforma integral de software de diagnóstico y mantenimiento para camiones ofrecida por Dieselsoft, estructurada en distintas versiones según la generación del vehículo. Las versiones TechTool 1.12 y TechTool 2.8 se especializan en vehículos con sistemas eléctricos versión 2 y versión 4 respectivamente, permitiendo realizar lecturas de errores, calibraciones y pruebas integrales de parámetros como compresión, consumo, desgaste y temperatura en tiempo real. Por su parte, PTT 2.7 y la versión actualizada PTT 2.8.301 (2025) ofrecen análisis precisos para detectar fallas críticas y generar reportes exhaustivos en unidades de última generación, optimizando la eficiencia operativa de la flota.",
-    imagenes: ["/img/3.png"],
+    imagenes: [
+      "/img/software/TECHTOOL1.12.png",
+      "/img/software/TECHTOOL 2.7.png",
+
+      "/img/software/TECHTOOL 2.8.175.png",
+      "/img/software/TECHTOOL 2.8.360.png",
+    ],
   },
 
   {
