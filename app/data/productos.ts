@@ -28,7 +28,7 @@ export const LISTA_PRODUCTOS: Producto[] = [
     titulo: "PROBADOR VEB EPG",
     descripcionCorta: "NUESTRA SUITE INSIGNIA PARA CONTROL OPERACIONAL.",
     descripcionLarga:
-      "Es una herramienta profesional diseñada para controlar módulos de hardware mediante Bluetooth (HC-05/06). Permite enviar valores de velocidad precisos con una interfaz visual intuitiva y fluida.",
+      "Tester para diagnóstico de actuadores EPG, WasteGate y Válvula AVU en sistemas diésel (12V/24V), con pantalla digital para lecturas de voltaje/corriente en tiempo real, modo de prueba automático y control de frecuencia PWM.",
     imagenes: [
       "/img/PROBADOR DE VEB -EPG.png",
       "/img/PANEL DE CONTROL.png",
@@ -38,7 +38,7 @@ export const LISTA_PRODUCTOS: Producto[] = [
       "/img/NIPLES DE ACOPLE.png",
     ],
     manualPdf1: "/pdf/PROBADOR VEB EPG.pdf",
-    manualPdf2: "/pdf/",
+
     videoYoutube: "https://www.youtube.com/watch?v=TU_LINK",
   },
 
