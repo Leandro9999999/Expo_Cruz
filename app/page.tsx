@@ -4,6 +4,7 @@ import Image from "next/image";
 import { motion, AnimatePresence } from "framer-motion";
 import Nosotros from "./Components/Nosotros";
 import Productos from "./Components/Productos";
+import Contacto from "./Components/Contacto";
 
 export default function Home() {
   const [activeTab, setActiveTab] = useState("inicio");
@@ -105,10 +106,10 @@ export default function Home() {
                     </span>
                   </div>
 
-                  <h3 className="text-2xl tracking-[0.1em] text-white mb-1 group-hover:text-white-400 transition">
+                  <h3 className="text-2xl tracking-[0.1em] text-white mb-1 group-hover:text-white-400 transition font-['Montserrat'] font-extrabold">
                     {item.titulo}
                   </h3>
-                  <p className="text-xs font-semibold text-white/50 mb-4 tracking-[0.1em]">
+                  <p className="text-xs font-['Montserrat'] font-extrabold text-white/50 mb-4 tracking-[0.1em]">
                     {item.subtitulo}
                   </p>
 
@@ -117,14 +118,14 @@ export default function Home() {
                   </p>
 
                   <div className="border-t border-white/10 pt-4 mb-6">
-                    <p className="text-xs font-bold text-white/80 uppercase tracking-[0.1em] mb-3">
+                    <p className="text-xs font-bold text-white/80 uppercase tracking-[0.1em] mb-3 font-['Montserrat'] font-extrabold">
                       Capacidades clave:
                     </p>
                     <ul className="space-y-2">
                       {item.puntos.map((punto, index) => (
                         <li
                           key={index}
-                          className="flex items-center text-xs text-gray-300 tracking-[0.1em]"
+                          className="flex items-center text-xs text-gray-300 tracking-[0.1em] font-['Montserrat'] font-extrabold"
                         >
                           <span className="w-1.5 h-1.5 rounded-full bg-white mr-2.5 shrink-0" />
                           {punto}
@@ -142,6 +143,9 @@ export default function Home() {
 
       case "productos":
         return <Productos />;
+
+      case "contacto":
+        return <Contacto />;
 
       default:
         return null;
@@ -218,7 +222,13 @@ export default function Home() {
           >
             PRODUCTOS
           </button>
-          <button className="hover:opacity-60 transition cursor-pointer">
+          {/* En el menú de PC: */}
+          <button
+            onClick={() => setActiveTab("contacto")}
+            className={`hover:opacity-60 transition cursor-pointer ${
+              activeTab === "contacto" ? "border-b border-white" : ""
+            }`}
+          >
             CONTACTO
           </button>
         </div>
@@ -293,8 +303,12 @@ export default function Home() {
                 </button>
                 <button
                   type="button"
-                  onClick={() => setMenuOpen(false)}
-                  className="text-left text-white/80 hover:text-white transition uppercase py-2 cursor-pointer"
+                  onClick={() => handleTabChange("contacto")}
+                  className={`text-left transition uppercase py-2 cursor-pointer ${
+                    activeTab === "contacto"
+                      ? "text-red-500 border-l-2 border-red-500 pl-3"
+                      : "text-white/80 hover:text-white"
+                  }`}
                 >
                   CONTACTO
                 </button>

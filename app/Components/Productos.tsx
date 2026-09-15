@@ -62,7 +62,6 @@ const Productos = () => {
             exit={{ opacity: 0, scale: 0.95 }}
             className="flex flex-col items-center w-full"
           >
-            {/* Botón Volver */}
             <button
               onClick={() => setSeleccionado(null)}
               className="mb-6 text-sm font-bold tracking-[0.1em] hover:text-white/60 transition uppercase self-start md:self-right"
@@ -70,10 +69,8 @@ const Productos = () => {
               ← VOLVER A PRODUCTOS
             </button>
 
-            {/* Tarjeta Principal */}
             <div className="bg-black/40 backdrop-blur-xl border border-white/10 rounded-[2.5rem] md:rounded-[3rem] p-6 md:p-12 w-full max-w-5xl shadow-2xl">
               <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 md:gap-12 items-start w-full">
-                {/* COLUMNA IZQUIERDA: Título, Información y Acciones */}
                 <div className="flex flex-col text-left space-y-6">
                   <div>
                     <h2 className="text-3xl sm:text-4xl md:text-4xl font-['Montserrat'] font-extrabold tracking-wide uppercase leading-tight text-white">
@@ -83,10 +80,14 @@ const Productos = () => {
                   </div>
 
                   <p className="text-sm md:text-base font-['Montserrat'] leading-relaxed tracking-wider  opacity-90">
-                    {seleccionado.descripcionLarga}
+                    {seleccionado.descripcionLarga},
+                    {seleccionado.descripcionLarga2 && (
+                      <span className="block mt-2">
+                        {seleccionado.descripcionLarga2}
+                      </span>
+                    )}
                   </p>
 
-                  {/* Botones de acción (PDFs / Video) */}
                   <div className="flex flex-col sm:flex-row flex-wrap gap-3 pt-4">
                     {seleccionado.manualPdf1 && (
                       <a
@@ -95,7 +96,12 @@ const Productos = () => {
                         rel="noopener noreferrer"
                         className="inline-flex items-center justify-center gap-2 bg-white/10 hover:bg-white/20 border border-white/20 px-4 py-3 rounded-xl text-xs font-bold tracking-widest uppercase transition-all backdrop-blur-sm"
                       >
-                        📄 Manual 1 (PDF)
+                        <img
+                          src="/icon/pdf.png"
+                          alt=""
+                          className="w-4 h-4 object-contain"
+                        />
+                        <span>Manual 1</span>
                       </a>
                     )}
 
@@ -106,7 +112,12 @@ const Productos = () => {
                         rel="noopener noreferrer"
                         className="inline-flex items-center justify-center gap-2 bg-white/10 hover:bg-white/20 border border-white/20 px-4 py-3 rounded-xl text-xs font-bold tracking-widest uppercase transition-all backdrop-blur-sm"
                       >
-                        📄 Manual 2 (PDF)
+                        <img
+                          src="/icon/pdf.png"
+                          alt=""
+                          className="w-4 h-4 object-contain"
+                        />
+                        <span>Manual 2</span>
                       </a>
                     )}
 
@@ -115,15 +126,19 @@ const Productos = () => {
                         href={seleccionado.videoYoutube}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="inline-flex items-center justify-center gap-2 bg-red-600/80 hover:bg-red-600 border border-red-500 px-4 py-3 rounded-xl text-xs font-bold tracking-widest uppercase transition-all backdrop-blur-sm"
+                        className="inline-flex items-center justify-center gap-2 bg-white/10 hover:bg-white/20 border border-white/20 px-4 py-3 rounded-xl text-xs font-bold tracking-widest uppercase transition-all backdrop-blur-sm"
                       >
-                        ▶ Ver Video Demo
+                        <img
+                          src="/icon/youtube.png"
+                          alt=""
+                          className="w-4 h-4 object-contain"
+                        />
+                        <span>Ver Video </span>
                       </a>
                     )}
                   </div>
                 </div>
 
-                {/* COLUMNA DERECHA: Imagen Principal y Miniaturas */}
                 <div className="flex flex-col items-center w-full gap-4">
                   <div className="relative w-full h-[300px] sm:h-[350px] md:h-[400px] bg-white rounded-[2rem] shadow-inner overflow-hidden">
                     <Image
