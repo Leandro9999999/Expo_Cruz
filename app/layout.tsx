@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import localFont from "next/font/local";
 import { Archivo_Black } from "next/font/google";
-import Script from "next/script"; // <-- Agregado para Google Analytics
+import Script from "next/script";
 import "./globals.css";
 
 const volvoFont = localFont({

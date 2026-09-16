@@ -133,4 +133,16 @@ export const LISTA_PRODUCTOS: Producto[] = [
       "/img/software/TECHTOOL 2.8.360.png",
     ],
   },
+
+  {
+    id: "Truck Link",
+    titulo: "Truck Link",
+    descripcionCorta: "NUESTRA SUITE INSIGNIA PARA CONTROL OPERACIONAL.",
+    descripcionLarga:
+      "TruckLink es un dispositivo de redque establece la comunicación entre los sistemas centrales y el equipo del cliente, gestionando el direccionamiento y latransferencia de paquetes de datos hacia la computadora delusuario.",
+    descripcionLarga2:
+      "A quién está dirigido: Clientes de DieselSoft Requisitos previos: computadora donde instalar y configurar el TruckLink",
+    imagenes: ["/img/trucklink/1.png", "/img/trucklink/2.png"],
+    manualPdf1: "/pdf/Manual_TruckLink.pdf",
+  },
 ];
