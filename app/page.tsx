@@ -28,7 +28,7 @@ export default function Home() {
             <h1 className="text-[14vw] md:text-[12rem] regular leading-[0.85] tracking-[-1 em] mb-6 drop-shadow-2xl">
               DIESELSOFT<span className="text-[0.25em] align-right">.srl</span>
             </h1>
-            <p className=" font-['Montserrat'] max-w-3xl text-[10px] md:text-[13px] tracking-[0.15em] leading-relaxed uppercase opacity-85 px-4">
+            <p className="font-['Montserrat'] max-w-3xl text-[10px] md:text-[13px] tracking-[0.15em] leading-relaxed uppercase opacity-85 px-4">
               En Dieselsoft, integramos el desarrollo de hardware y software de
               vanguardia con la ingeniería mecánica pesada para optimizar,
               diagnosticar y transformar la gestión de tu flota vehicular.
@@ -92,12 +92,12 @@ export default function Home() {
           <motion.div
             initial={{ opacity: 0, x: 50 }}
             animate={{ opacity: 1, x: 0 }}
-            className="grid grid-cols-1 lg:grid-cols-3 gap-8 px-6 md:px-10 py-4"
+            className="grid grid-cols-1 lg:grid-cols-3 gap-8 px-4 sm:px-6 md:px-10 py-4"
           >
             {serviciosDieselsoft.map((item) => (
               <div
                 key={item.id}
-                className="relative p-8 bg-gradient-to-b from-white/10 to-white/5 border border-white/10 rounded-2xl hover:border-white-500/50 hover:bg-white/10 transition-all duration-300 flex flex-col justify-between group shadow-xl"
+                className="relative p-6 sm:p-8 bg-gradient-to-b from-white/10 to-white/5 border border-white/10 rounded-2xl hover:border-white-500/50 hover:bg-white/10 transition-all duration-300 flex flex-col justify-between group shadow-xl"
               >
                 <div>
                   <div className="flex justify-between items-center mb-4">
@@ -153,18 +153,20 @@ export default function Home() {
   };
 
   return (
-    <main className="relative min-h-screen w-full flex flex-col text-white overflow-hidden font-[family-name:var(--font-volvo)]">
-      <div className="absolute inset-0 -z-10">
-        <div className="absolute inset-0 bg-black/60 z-10" />
+    <main className="relative min-h-screen w-full flex flex-col text-white overflow-x-hidden font-[family-name:var(--font-volvo)]">
+      {/* Fondo fijo adaptable a móvil y escritorio */}
+      <div className="fixed inset-0 -z-10 pointer-events-none">
+        <div className="absolute inset-0 bg-black/65 z-10" />
         <Image
-          src="/img/camion1.png"
+          src="/img/green.png"
           alt="Dieselsoft"
           fill
-          className="object-cover"
+          className="object-cover object-[25%_center] md:object-center"
           priority
         />
       </div>
 
+      {/* Barra de navegación */}
       <nav className="relative z-30 flex items-center justify-between px-6 py-6 md:px-16">
         <div className="flex items-center gap-4">
           <button
@@ -222,7 +224,6 @@ export default function Home() {
           >
             PRODUCTOS
           </button>
-          {/* En el menú de PC: */}
           <button
             onClick={() => setActiveTab("contacto")}
             className={`hover:opacity-60 transition cursor-pointer ${
@@ -234,6 +235,7 @@ export default function Home() {
         </div>
       </nav>
 
+      {/* Menú móvil lateral */}
       <AnimatePresence>
         {menuOpen && (
           <>
@@ -250,7 +252,7 @@ export default function Home() {
               animate={{ x: 0 }}
               exit={{ x: "-100%" }}
               transition={{ type: "tween", duration: 0.3 }}
-              className="fixed top-0 left-0 bottom-0 w-72 bg-black/90 backdrop-blur-xl border-r border-white/10 z-50 flex flex-col p-8 md:hidden"
+              className="fixed top-0 left-0 bottom-0 w-72 bg-black/95 backdrop-blur-xl border-r border-white/10 z-50 flex flex-col p-8 md:hidden"
             >
               <div className="text-xl font-bold tracking-widest mb-12 border-b border-white/10 pb-4">
                 MENÚ
@@ -318,7 +320,8 @@ export default function Home() {
         )}
       </AnimatePresence>
 
-      <div className="flex-1 flex flex-col items-center justify-center text-center px-4 -mt-10 relative z-20">
+      {/* Contenido principal */}
+      <div className="flex-1 flex flex-col items-center justify-center text-center px-4 py-8 md:py-0 md:-mt-10 relative z-20">
         <AnimatePresence mode="wait">
           <div key={activeTab}>{renderContent()}</div>
         </AnimatePresence>

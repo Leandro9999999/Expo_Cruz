@@ -31,8 +31,8 @@ export default function Contacto() {
   return (
     <section className="relative w-full max-w-5xl mx-auto px-4 py-12 sm:py-20 font-sans">
       {/* Luces de fondo sutiles */}
-      <div className="absolute top-1/2 left-1/4 -translate-y-1/2 w-96 h-96 bg-cyan-500/10 rounded-full blur-[140px] pointer-events-none -z-10" />
-      <div className="absolute bottom-10 right-1/4 w-80 h-80 bg-emerald-500/10 rounded-full blur-[140px] pointer-events-none -z-10" />
+      <div className="absolute top-1/2 left-1/4 -translate-y-1/2 w-96 h-96 bg-white/5 rounded-full blur-[140px] pointer-events-none -z-10" />
+      <div className="absolute bottom-10 right-1/4 w-80 h-80 bg-zinc-700/10 rounded-full blur-[140px] pointer-events-none -z-10" />
 
       <motion.div
         initial={{ opacity: 0, y: 20 }}
@@ -40,16 +40,13 @@ export default function Contacto() {
         transition={{ duration: 0.6 }}
         className="relative bg-zinc-950/70 backdrop-blur-xl border border-zinc-800/80 rounded-3xl p-6 sm:p-10 md:p-12 shadow-2xl overflow-hidden"
       >
-        <div className="absolute top-0 inset-x-0 h-px bg-gradient-to-r from-transparent via-cyan-500/40 to-transparent" />
+        <div className="absolute top-0 inset-x-0 h-px bg-gradient-to-r from-transparent via-white/20 to-transparent" />
 
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center">
           <div className="lg:col-span-7 flex flex-col justify-between space-y-6 text-left">
             <div>
               <h2 className="text-3xl sm:text-5xl font-black tracking-tight text-white leading-tight">
-                Hablemos de tu{" "}
-                <span className=" bg-clip-text bg-gradient-to-r from-cyan-400 to-emerald-400">
-                  próximo proyecto.
-                </span>
+                Contáctanos
               </h2>
               <p className="mt-4 text-zinc-400 text-sm sm:text-base leading-relaxed">
                 Optimización, diagnóstico electrónico y software para flotas y
@@ -57,16 +54,16 @@ export default function Contacto() {
               </p>
             </div>
 
-            {/* Botón WhatsApp Destacado */}
+            {/* Botón WhatsApp sin color verde (Estilo Glass / Monocromático) */}
             <div className="pt-2">
               <a
                 href={`https://wa.me/${WHATSAPP_NUMERO}?text=${WHATSAPP_MENSAJE}`}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="group relative inline-flex items-center justify-between w-full sm:w-auto gap-4 px-6 py-4 rounded-2xl bg-gradient-to-r from-emerald-600 to-teal-600 text-white font-bold shadow-lg shadow-emerald-950/50 hover:shadow-emerald-500/25 hover:scale-[1.02] active:scale-[0.98] transition-all duration-300"
+                className="group relative inline-flex items-center justify-between w-full sm:w-auto gap-4 px-6 py-4 rounded-2xl bg-white/10 hover:bg-white/15 border border-white/20 backdrop-blur-md text-white font-bold shadow-xl hover:border-white/40 hover:scale-[1.02] active:scale-[0.98] transition-all duration-300"
               >
                 <div className="flex items-center gap-3.5">
-                  <div className="w-8 h-8 rounded-lg bg-white/20 flex items-center justify-center p-1.5">
+                  <div className="w-8 h-8 rounded-lg bg-white/10 border border-white/10 flex items-center justify-center p-1.5 group-hover:bg-white/20 transition-colors">
                     <img
                       src="/icon/whatsapp.png"
                       alt="WhatsApp"
@@ -74,16 +71,16 @@ export default function Contacto() {
                     />
                   </div>
                   <div className="text-left">
-                    <div className="text-xs text-emerald-100 font-medium leading-none">
+                    <div className="text-xs text-zinc-400 font-medium leading-none">
                       Canal directo
                     </div>
-                    <div className="text-base font-bold">
+                    <div className="text-base font-bold text-white">
                       Contactar por WhatsApp
                     </div>
                   </div>
                 </div>
                 <svg
-                  className="w-5 h-5 text-emerald-200 group-hover:translate-x-1 transition-transform"
+                  className="w-5 h-5 text-zinc-400 group-hover:text-white group-hover:translate-x-1 transition-all"
                   fill="none"
                   viewBox="0 0 24 24"
                   stroke="currentColor"
@@ -98,7 +95,7 @@ export default function Contacto() {
               </a>
             </div>
 
-            {/* Enlace a Ubicación discreto e integrado */}
+            {/* Enlace a Ubicación */}
             <div className="pt-2 border-t border-zinc-800/60">
               <a
                 href="https://www.google.com/maps/place/DIESEL+SOFT+S.R.L./@-17.3922711,-66.0719986,19z/data=!4m6!3m5!1s0x93e371d220f98449:0x116fb058d509f94c!8m2!3d-17.391955!4d-66.071485!16s%2Fg%2F11sbh_8_mb?entry=ttu"
@@ -106,7 +103,7 @@ export default function Contacto() {
                 rel="noopener noreferrer"
                 className="group inline-flex items-center gap-3 text-zinc-400 hover:text-zinc-200 transition-colors text-sm"
               >
-                <div className="w-8 h-8 rounded-full bg-zinc-900 border border-zinc-700/60 flex items-center justify-center p-1.5 group-hover:border-amber-500/50 transition-colors">
+                <div className="w-8 h-8 rounded-full bg-zinc-900 border border-zinc-700/60 flex items-center justify-center p-1.5 group-hover:border-zinc-500 transition-colors">
                   <img
                     src="/icon/google-maps.png"
                     alt="Ubicación"
@@ -119,14 +116,14 @@ export default function Contacto() {
                     Cochabamba, Bolivia
                   </strong>
                 </span>
-                <span className="text-xs text-zinc-500 group-hover:text-amber-400 transition-colors">
+                <span className="text-xs text-zinc-500 group-hover:text-white transition-colors">
                   Ver mapa →
                 </span>
               </a>
             </div>
           </div>
 
-          {/* Columna Derecha: Redes Sociales Limpias y Estilizadas */}
+          {/* Columna Derecha: Redes Sociales */}
           <div className="lg:col-span-5 flex flex-col justify-center space-y-3 bg-zinc-900/40 p-4 sm:p-5 rounded-2xl border border-zinc-800/50">
             <span className="text-xs font-semibold uppercase tracking-wider text-zinc-500 px-2">
               Canales y Contenido
