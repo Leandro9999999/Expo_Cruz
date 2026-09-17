@@ -77,7 +77,7 @@ export const LISTA_PRODUCTOS: Producto[] = [
     descripcionCorta: "NUESTRA SUITE INSIGNIA PARA CONTROL OPERACIONAL.",
     descripcionLarga:
       "DevTool-FH5 es una aplicación de escritorio desarrollada por DieselSoft, diseñada específicamente para facilitar el trabajo de los técnicos. Su propósito es agilizar y simplificar la habilitación de parámetros, permitiendo realizar estos procesos de forma más rápida, sencilla y eficiente.",
-    imagenes: ["/img/DevTool-FH5_1.png", "/img/65.png"],
+    imagenes: ["/img/DevToolFH5.png", "/img/65.png"],
     manualPdf1: "/pdf/Manual-DevTool-FH-5.pdf",
   },
 
