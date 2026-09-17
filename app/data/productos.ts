@@ -23,13 +23,15 @@ export const LISTA_PRODUCTOS: Producto[] = [
     videoYoutube: "https://www.youtube.com/watch?v=TU_LINK",
   },
   {
-    id: "Ecu Repair-1.",
-    titulo: "Ecu Repair-1.",
+    id: "Truck Link",
+    titulo: "Truck Link",
     descripcionCorta: "NUESTRA SUITE INSIGNIA PARA CONTROL OPERACIONAL.",
     descripcionLarga:
-      "Ecu Repair transforma imágenes técnicas en una experiencia interactiva. Permite localizar componentes, revisar conexiones, consultar esquemáticos y organizar información técnica en un solo lugar.",
-    imagenes: ["/img/ecurepair.png"],
-    manualPdf1: "/pdf/Manual Ecu Repair-1.pdf",
+      "TruckLink es un dispositivo de redque establece la comunicación entre los sistemas centrales y el equipo del cliente, gestionando el direccionamiento y latransferencia de paquetes de datos hacia la computadora delusuario.",
+    descripcionLarga2:
+      "A quién está dirigido: Clientes de DieselSoft Requisitos previos: computadora donde instalar y configurar el TruckLink",
+    imagenes: ["/img/trucklink/1.png", "/img/trucklink/2.png"],
+    manualPdf1: "/pdf/Manual_TruckLink.pdf",
   },
 
   {
@@ -49,6 +51,34 @@ export const LISTA_PRODUCTOS: Producto[] = [
     manualPdf1: "/pdf/PROBADOR VEB EPG.pdf",
 
     videoYoutube: "https://www.youtube.com/watch?v=TU_LINK",
+  },
+  {
+    id: "FH-4 Expert",
+    titulo: "FH-4 Expert",
+    descripcionCorta: "NUESTRA SUITE INSIGNIA PARA CONTROL OPERACIONAL.",
+    descripcionLarga:
+      "FH-4 Expert es una aplicación móvil desarrollada por DieselSoft, orientada a brindar soporte técnico a profesionales y técnicos de talleres especializados en diagnóstico y reparación de vehículos. La aplicación proporciona acceso a información técnica, parámetros de configuración y diagramas de referencia, permitiendo identificar y solucionar incidencias de manera más eficiente.",
+    imagenes: ["/img/celular.png"],
+    manualPdf1: "/pdf/Manual-FH4-Expert.pdf",
+  },
+  {
+    id: "Ecu Repair-1.",
+    titulo: "Ecu Repair-1.",
+    descripcionCorta: "NUESTRA SUITE INSIGNIA PARA CONTROL OPERACIONAL.",
+    descripcionLarga:
+      "Ecu Repair transforma imágenes técnicas en una experiencia interactiva. Permite localizar componentes, revisar conexiones, consultar esquemáticos y organizar información técnica en un solo lugar.",
+    imagenes: ["/img/ecurepair.png"],
+    manualPdf1: "/pdf/Manual Ecu Repair-1.pdf",
+  },
+
+  {
+    id: "DevTool-FH5",
+    titulo: "DevTool-FH5",
+    descripcionCorta: "NUESTRA SUITE INSIGNIA PARA CONTROL OPERACIONAL.",
+    descripcionLarga:
+      "DevTool-FH5 es una aplicación de escritorio desarrollada por DieselSoft, diseñada específicamente para facilitar el trabajo de los técnicos. Su propósito es agilizar y simplificar la habilitación de parámetros, permitiendo realizar estos procesos de forma más rápida, sencilla y eficiente.",
+    imagenes: ["/img/DevTool-FH5_1.png", "/img/65.png"],
+    manualPdf1: "/pdf/Manual-DevTool-FH-5.pdf",
   },
 
   {
@@ -132,17 +162,5 @@ export const LISTA_PRODUCTOS: Producto[] = [
       "/img/software/TECHTOOL 2.8.175.png",
       "/img/software/TECHTOOL 2.8.360.png",
     ],
-  },
-
-  {
-    id: "Truck Link",
-    titulo: "Truck Link",
-    descripcionCorta: "NUESTRA SUITE INSIGNIA PARA CONTROL OPERACIONAL.",
-    descripcionLarga:
-      "TruckLink es un dispositivo de redque establece la comunicación entre los sistemas centrales y el equipo del cliente, gestionando el direccionamiento y latransferencia de paquetes de datos hacia la computadora delusuario.",
-    descripcionLarga2:
-      "A quién está dirigido: Clientes de DieselSoft Requisitos previos: computadora donde instalar y configurar el TruckLink",
-    imagenes: ["/img/trucklink/1.png", "/img/trucklink/2.png"],
-    manualPdf1: "/pdf/Manual_TruckLink.pdf",
   },
 ];
