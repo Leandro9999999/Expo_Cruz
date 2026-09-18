@@ -36,7 +36,7 @@ export default function Productos() {
   if (!seleccionado) {
     return (
       <main className="mx-auto flex w-full max-w-7xl flex-col items-center px-4 py-6 font-sans">
-        <h1 className="mb-12 text-center text-5xl  font-['Montserrat'] font-extrabold tracking-[0.1em] text-white md:text-7xl">
+        <h1 className="mb-12 text-center text-5xl font-['Montserrat'] font-extrabold tracking-[0.1em] text-white md:text-7xl">
           PRODUCTOS
         </h1>
 
@@ -56,11 +56,12 @@ export default function Productos() {
                   src={producto.imagenes[0]}
                   alt={producto.titulo}
                   fill
+                  sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
                   className="object-contain p-4 transition-transform group-hover:scale-105"
                 />
               </div>
 
-              <h2 className="mb-4 text-xl  font-['Montserrat'] font-extrabold tracking-wider text-white">
+              <h2 className="mb-4 text-xl font-['Montserrat'] font-extrabold tracking-wider text-white">
                 {producto.titulo}
               </h2>
 
@@ -112,16 +113,17 @@ export default function Productos() {
               rel="noopener noreferrer"
               className="inline-flex w-fit items-center justify-center gap-3 rounded-xl bg-emerald-600 px-5 py-3 text-xs font-extrabold uppercase tracking-widest text-white shadow-lg shadow-emerald-950/40 transition hover:bg-emerald-500"
             >
-              <img
+              <Image
                 src="/icon/whatsapp.png"
                 alt="WhatsApp"
+                width={20}
+                height={20}
                 className="h-5 w-5 brightness-0 invert"
               />
               <span>Cotizar por WhatsApp</span>
             </a>
 
             <div className="flex flex-wrap gap-3">
-              {/* Corregido: seleccionado en lugar de selected */}
               {[seleccionado.manualPdf1, seleccionado.manualPdf2].map(
                 (manual, indice) =>
                   manual ? (
@@ -132,7 +134,13 @@ export default function Productos() {
                       rel="noopener noreferrer"
                       className="inline-flex items-center justify-center gap-2 rounded-xl border border-white/20 bg-white/10 px-4 py-3 text-xs font-bold uppercase tracking-widest text-white backdrop-blur-sm transition hover:bg-white/20"
                     >
-                      <img src="/icon/pdf.png" alt="" className="h-4 w-4" />
+                      <Image
+                        src="/icon/pdf.png"
+                        alt="PDF"
+                        width={16}
+                        height={16}
+                        className="h-4 w-4"
+                      />
                       <span>Manual {indice + 1}</span>
                     </a>
                   ) : null,
@@ -145,7 +153,13 @@ export default function Productos() {
                   rel="noopener noreferrer"
                   className="inline-flex items-center justify-center gap-2 rounded-xl border border-white/20 bg-white/10 px-4 py-3 text-xs font-bold uppercase tracking-widest text-white backdrop-blur-sm transition hover:bg-white/20"
                 >
-                  <img src="/icon/youtube.png" alt="" className="h-4 w-4" />
+                  <Image
+                    src="/icon/youtube.png"
+                    alt="YouTube"
+                    width={16}
+                    height={16}
+                    className="h-4 w-4"
+                  />
                   <span>Ver Video</span>
                 </a>
               )}
@@ -165,6 +179,8 @@ export default function Productos() {
                 src={seleccionado.imagenes[indiceImagen]}
                 alt={seleccionado.titulo}
                 fill
+                sizes="(max-width: 1024px) 100vw, 50vw"
+                priority
                 className="object-contain p-6"
               />
 
@@ -211,8 +227,9 @@ export default function Productos() {
                   >
                     <Image
                       src={imagen}
-                      alt="Miniatura"
+                      alt={`Miniatura ${indice + 1}`}
                       fill
+                      sizes="64px"
                       className="object-contain p-1"
                     />
                   </button>
@@ -248,6 +265,7 @@ export default function Productos() {
               src={seleccionado.imagenes[indiceImagen]}
               alt={seleccionado.titulo}
               fill
+              sizes="(max-width: 1024px) 95vw, 80vw"
               className="object-contain p-4"
             />
           </div>
