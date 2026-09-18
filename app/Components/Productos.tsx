@@ -107,7 +107,7 @@ export default function Productos() {
 
             <a
               href={`https://wa.me/${WHATSAPP_NUMERO}?text=${encodeURIComponent(
-                `Hola Dieselsoft, me interesa cotizar el producto: ${seleccionado.titulo} (ID:${seleccionado.id}).`,
+                `Hola Dieselsoft, me interesa cotizar el producto: ${seleccionado.titulo} `,
               )}`}
               target="_blank"
               rel="noopener noreferrer"
