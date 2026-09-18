@@ -82,6 +82,23 @@ export const LISTA_PRODUCTOS: Producto[] = [
   },
 
   {
+    id: "TechTool",
+    titulo: "TechTool",
+    descripcionCorta: "NUESTRA SUITE INSIGNIA PARA CONTROL OPERACIONAL.",
+    descripcionLarga:
+      "TechTool es una plataforma integral de software de diagnóstico y mantenimiento para camiones ofrecida por Dieselsoft, diseñada para optimizar la eficiencia operativa de las flotas según la generación del vehículo.",
+    descripcionLarga2:
+      "Verciones disponibles: TechTool 1.12, TechTool 2.7, TechTool 2.8.175 y TechTool 2.8.360.",
+    imagenes: [
+      "/img/software/TECHTOOL1.12.png",
+      "/img/software/TECHTOOL 2.7.png",
+
+      "/img/software/TECHTOOL 2.8.175.png",
+      "/img/software/TECHTOOL 2.8.360.png",
+    ],
+  },
+
+  {
     id: "Vocom-II-Plus",
     titulo: "Vocom II Plus",
     descripcionCorta: "NUESTRA SUITE INSIGNIA PARA CONTROL OPERACIONAL.",
@@ -93,6 +110,19 @@ export const LISTA_PRODUCTOS: Producto[] = [
       "/img/Vocom II plus/0.png",
       "/img/Vocom II plus/3.png",
       "/img/Vocom II plus/4.png",
+    ],
+  },
+  {
+    id: "VOCOM-1",
+    titulo: "VOCOM 1",
+    descripcionCorta: "NUESTRA SUITE INSIGNIA PARA CONTROL OPERACIONAL.",
+    descripcionLarga:
+      "La herramienta de diagnóstico de camiones Volvo Vocom 88890300 es la herramienta de diagnóstico OEM más reciente, genuina y única fabricada por Movimento en Suecia y diseñada para el mantenimiento de Volvo, MACK, Penta (motores marinos), UD, camiones Renault EURO 6, autobuses, máquinas de construcción y otros vehículos pesados que cubren todo el proceso de reparación mediante el uso de una computadora portátil de diagnóstico especial con software de diagnóstico configurado. Fue desarrollado para hacer las tareas del taller de reparaciones más fáciles y más eficientes.",
+    imagenes: [
+      "/img/vocom/1.png",
+      "/img/vocom/2.png",
+      "/img/vocom/3.png",
+      "/img/vocom/4.png",
     ],
   },
 
