@@ -5,6 +5,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import Nosotros from "./Components/Nosotros";
 import Productos from "./Components/Productos";
 import Contacto from "./Components/Contacto";
+import Capacitaciones from "./Components/Capacitaciones";
 
 export default function Home() {
   const [activeTab, setActiveTab] = useState("inicio");
@@ -143,6 +144,8 @@ export default function Home() {
 
       case "productos":
         return <Productos />;
+      case "capacitaciones":
+        return <Capacitaciones />;
 
       case "contacto":
         return <Contacto />;
@@ -225,6 +228,14 @@ export default function Home() {
             PRODUCTOS
           </button>
           <button
+            onClick={() => setActiveTab("capacitaciones")}
+            className={`hover:opacity-60 transition cursor-pointer ${
+              activeTab === "capacitaciones" ? "border-b border-white" : ""
+            }`}
+          >
+            Capacitaciones
+          </button>
+          <button
             onClick={() => setActiveTab("contacto")}
             className={`hover:opacity-60 transition cursor-pointer ${
               activeTab === "contacto" ? "border-b border-white" : ""
@@ -302,6 +313,17 @@ export default function Home() {
                   }`}
                 >
                   PRODUCTOS
+                </button>
+                <button
+                  type="button"
+                  onClick={() => handleTabChange("capacitaciones")}
+                  className={`text-left transition uppercase py-2 cursor-pointer ${
+                    activeTab === "contacto"
+                      ? "text-red-500 border-l-2 border-red-500 pl-3"
+                      : "text-white/80 hover:text-white"
+                  }`}
+                >
+                  Capacitaciones
                 </button>
                 <button
                   type="button"
