@@ -22,7 +22,7 @@ export default function Contacto() {
     },
     {
       name: "YouTube",
-      url: "https://youtube.com/@tu-canal",
+      url: "https://www.youtube.com/@dieselsofttv2274",
       icon: "/icon/youtube.png",
       detail: "Canal Oficial",
     },
