@@ -20,7 +20,7 @@ export const LISTA_PRODUCTOS: Producto[] = [
     imagenes: ["/img/bt3.png", "/img/bt2.png", "/img/bt4.png", "/img/bt1.png"],
     manualPdf1: "/pdf/BT-Controller-Manual.pdf",
     manualPdf2: "/pdf/SIMULADOR-VELOCIDAD.pdf",
-    videoYoutube: "https://www.youtube.com/watch?v=TU_LINK",
+    videoYoutube: "https://youtu.be/LjM184MF2-Q",
   },
   {
     id: "Truck Link",
@@ -50,7 +50,7 @@ export const LISTA_PRODUCTOS: Producto[] = [
     ],
     manualPdf1: "/pdf/PROBADOR VEB EPG.pdf",
 
-    videoYoutube: "https://www.youtube.com/watch?v=TU_LINK",
+    videoYoutube: "https://youtu.be/x8TWptZhOws",
   },
   {
     id: "FH-4 Expert",
@@ -60,6 +60,7 @@ export const LISTA_PRODUCTOS: Producto[] = [
       "FH-4 Expert es una aplicación móvil desarrollada por DieselSoft, orientada a brindar soporte técnico a profesionales y técnicos de talleres especializados en diagnóstico y reparación de vehículos. La aplicación proporciona acceso a información técnica, parámetros de configuración y diagramas de referencia, permitiendo identificar y solucionar incidencias de manera más eficiente.",
     imagenes: ["/img/celular.png"],
     manualPdf1: "/pdf/Manual-FH4-Expert.pdf",
+    videoYoutube: "https://youtu.be/VlBqaCqp9QI",
   },
   {
     id: "Ecu Repair-1.",
