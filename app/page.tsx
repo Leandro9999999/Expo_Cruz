@@ -11,20 +11,15 @@ export default function Home() {
   const [activeTab, setActiveTab] = useState("inicio");
   const [menuOpen, setMenuOpen] = useState(false);
 
-  // --- CONTROL DEL BOTÓN ATRÁS DEL TELÉFONO ---
   useEffect(() => {
-    // Si no estamos en inicio o el menú está abierto, agregamos una entrada al historial
     if (activeTab !== "inicio" || menuOpen) {
       window.history.pushState({ tab: activeTab, menuOpen }, "");
     }
 
     const handlePopState = () => {
-      // 1. Si el menú móvil está abierto, el botón atrás solo cierra el menú
       if (menuOpen) {
         setMenuOpen(false);
-      }
-      // 2. Si estamos en cualquier otra pestaña, el botón atrás regresa a "inicio"
-      else if (activeTab !== "inicio") {
+      } else if (activeTab !== "inicio") {
         setActiveTab("inicio");
       }
     };
@@ -194,7 +189,6 @@ export default function Home() {
         />
       </div>
 
-      {/* Barra de navegación */}
       <nav className="relative z-30 flex items-center justify-between px-6 py-6 md:px-16">
         <div className="flex items-center gap-4">
           <button
@@ -367,7 +361,6 @@ export default function Home() {
         )}
       </AnimatePresence>
 
-      {/* Contenido principal */}
       <div className="flex-1 flex flex-col items-center justify-center text-center px-4 py-8 md:py-0 md:-mt-10 relative z-20">
         <AnimatePresence mode="wait">
           <div key={activeTab}>{renderContent()}</div>
