@@ -3,6 +3,7 @@ import localFont from "next/font/local";
 import { Archivo_Black } from "next/font/google";
 import Script from "next/script";
 import "./globals.css";
+import BackToHome from "./Components/BackToHome";
 
 const volvoFont = localFont({
   src: "./fonts/beaver.ttf",
@@ -43,6 +44,7 @@ export default function RootLayout({
             gtag('config', 'G-TX18REQB8E');
           `}
         </Script>
+        <BackToHome />
 
         {children}
       </body>

@@ -27,7 +27,7 @@ export const LISTA_PRODUCTOS: Producto[] = [
     titulo: "Truck Link",
     descripcionCorta: "Más información",
     descripcionLarga:
-      "TruckLink es un dispositivo de redque establece la comunicación entre los sistemas centrales y el equipo del cliente, gestionando el direccionamiento y latransferencia de paquetes de datos hacia la computadora delusuario.",
+      "TruckLink es un dispositivo de redque establece la comunicación entre los sistemas centrales y el equipo del cliente, gestionando el direccionamiento y la transferencia de paquetes de datos hacia la computadora del usuario.",
     descripcionLarga2:
       "A quién está dirigido: Clientes de DieselSoft Requisitos previos: computadora donde instalar y configurar el TruckLink",
     imagenes: ["/img/trucklink/1.png", "/img/trucklink/2.png"],
