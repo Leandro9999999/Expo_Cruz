@@ -1,5 +1,5 @@
 "use client";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Image from "next/image";
 import { motion, AnimatePresence } from "framer-motion";
 import Nosotros from "./Components/Nosotros";
@@ -10,6 +10,31 @@ import Capacitaciones from "./Components/Capacitaciones";
 export default function Home() {
   const [activeTab, setActiveTab] = useState("inicio");
   const [menuOpen, setMenuOpen] = useState(false);
+
+  // --- CONTROL DEL BOTÓN ATRÁS DEL TELÉFONO ---
+  useEffect(() => {
+    // Si no estamos en inicio o el menú está abierto, agregamos una entrada al historial
+    if (activeTab !== "inicio" || menuOpen) {
+      window.history.pushState({ tab: activeTab, menuOpen }, "");
+    }
+
+    const handlePopState = () => {
+      // 1. Si el menú móvil está abierto, el botón atrás solo cierra el menú
+      if (menuOpen) {
+        setMenuOpen(false);
+      }
+      // 2. Si estamos en cualquier otra pestaña, el botón atrás regresa a "inicio"
+      else if (activeTab !== "inicio") {
+        setActiveTab("inicio");
+      }
+    };
+
+    window.addEventListener("popstate", handlePopState);
+
+    return () => {
+      window.removeEventListener("popstate", handlePopState);
+    };
+  }, [activeTab, menuOpen]);
 
   const handleTabChange = (tab: string) => {
     setActiveTab(tab);
@@ -35,8 +60,8 @@ export default function Home() {
               diagnosticar y transformar la gestión de tu flota vehicular.
             </p>
             <button
-              onClick={() => setActiveTab("servicios")}
-              className="mt-12 bg-white/10 hover:bg-white/20 backdrop-blur-md border border-white/20 px-12 py-4 rounded-xl text-[12px] tracking-[0.2em] font-bold transition-all uppercase"
+              onClick={() => handleTabChange("servicios")}
+              className="mt-12 bg-white/10 hover:bg-white/20 backdrop-blur-md border border-white/20 px-12 py-4 rounded-xl text-[12px] tracking-[0.2em] font-bold transition-all uppercase cursor-pointer"
             >
               Más información
             </button>
@@ -204,7 +229,7 @@ export default function Home() {
 
         <div className="hidden md:flex space-x-10 text-[15px] tracking-[0.1em] font-bold">
           <button
-            onClick={() => setActiveTab("nosotros")}
+            onClick={() => handleTabChange("nosotros")}
             className={`hover:opacity-60 transition cursor-pointer ${
               activeTab === "nosotros" ? "border-b border-white" : ""
             }`}
@@ -212,7 +237,7 @@ export default function Home() {
             SOBRE NOSOTROS
           </button>
           <button
-            onClick={() => setActiveTab("servicios")}
+            onClick={() => handleTabChange("servicios")}
             className={`hover:opacity-60 transition cursor-pointer ${
               activeTab === "servicios" ? "border-b border-white" : ""
             }`}
@@ -220,7 +245,7 @@ export default function Home() {
             SERVICIOS
           </button>
           <button
-            onClick={() => setActiveTab("productos")}
+            onClick={() => handleTabChange("productos")}
             className={`hover:opacity-60 transition cursor-pointer ${
               activeTab === "productos" ? "border-b border-white" : ""
             }`}
@@ -228,7 +253,7 @@ export default function Home() {
             PRODUCTOS
           </button>
           <button
-            onClick={() => setActiveTab("capacitaciones")}
+            onClick={() => handleTabChange("capacitaciones")}
             className={`hover:opacity-60 transition cursor-pointer ${
               activeTab === "capacitaciones" ? "border-b border-white" : ""
             }`}
@@ -236,7 +261,7 @@ export default function Home() {
             Capacitaciones
           </button>
           <button
-            onClick={() => setActiveTab("contacto")}
+            onClick={() => handleTabChange("contacto")}
             className={`hover:opacity-60 transition cursor-pointer ${
               activeTab === "contacto" ? "border-b border-white" : ""
             }`}
@@ -318,7 +343,7 @@ export default function Home() {
                   type="button"
                   onClick={() => handleTabChange("capacitaciones")}
                   className={`text-left transition uppercase py-2 cursor-pointer ${
-                    activeTab === "contacto"
+                    activeTab === "capacitaciones"
                       ? "text-red-500 border-l-2 border-red-500 pl-3"
                       : "text-white/80 hover:text-white"
                   }`}
