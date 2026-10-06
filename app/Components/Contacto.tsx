@@ -45,7 +45,7 @@ export default function Contacto() {
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center">
           <div className="lg:col-span-7 flex flex-col justify-between space-y-6 text-left">
             <div>
-              <h2 className="text-3xl sm:text-5xl font-black tracking-tight text-white leading-tight">
+              <h2 className="text-3xl sm:text-5xl font-bold tracking-tight text-white leading-tight">
                 Contáctanos
               </h2>
               <p className="mt-4 text-zinc-400 text-sm sm:text-base leading-relaxed">

@@ -113,7 +113,7 @@ export default function Capacitaciones() {
       <header className="relative z-10 mx-auto mb-10 max-w-3xl text-center">
         <h2
           id="titulo-capacitacion"
-          className="mt-4 font-['Montserrat'] text-3xl font-extrabold tracking-tight text-white md:text-4xl lg:text-5xl"
+          className="mt-4 font-montserrat text-3xl font-extrabold tracking-tight text-white md:text-4xl lg:text-5xl"
         >
           Diagnóstico de camiones con{" "}
           <span className="bg-gradient-to-r from-blue-400 via-sky-300 to-cyan-400 bg-clip-text text-transparent">
@@ -121,7 +121,7 @@ export default function Capacitaciones() {
           </span>
         </h2>
 
-        <p className="mt-4 font-['Montserrat'] text-sm leading-relaxed text-zinc-400 md:text-base">
+        <p className="mt-4 font-montserrat text-sm leading-relaxed text-zinc-400 md:text-base">
           Aprende a dominar el scanner líder en el sector pesado: diagnostica
           fallas complejas, reprograma parámetros y realiza calibraciones en
           unidades reales.
@@ -237,10 +237,10 @@ export default function Capacitaciones() {
                   </div>
 
                   <div className="text-left">
-                    <h4 className="font-['Montserrat'] text-sm font-semibold text-white">
+                    <h4 className="font-montserrat text-sm font-semibold text-white">
                       {titulo}
                     </h4>
-                    <p className="mt-1 font-['Montserrat'] text-xs leading-relaxed text-zinc-400">
+                    <p className="mt-1 font-montserrat text-xs leading-relaxed text-zinc-400">
                       {descripcion}
                     </p>
                   </div>
@@ -271,7 +271,7 @@ export default function Capacitaciones() {
                   <span className="h-1.5 w-1.5 rounded-full bg-emerald-400 animate-pulse" />
                   Inscripciones abiertas
                 </p>
-                <p className="font-['Montserrat'] text-sm font-bold text-white">
+                <p className="font-montserrat text-sm font-bold text-white">
                   Consultar / Inscribirse por WhatsApp
                 </p>
               </div>

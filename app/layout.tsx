@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import localFont from "next/font/local";
-import { Archivo_Black } from "next/font/google";
+import { Archivo_Black, Montserrat } from "next/font/google"; // 1. Importas Montserrat
 import Script from "next/script";
 import "./globals.css";
 import BackToHome from "./Components/BackToHome";
@@ -18,6 +18,14 @@ const archivo = Archivo_Black({
   variable: "--font-archivo",
 });
 
+// 2. Configuras Montserrat
+const montserrat = Montserrat({
+  subsets: ["latin"],
+  weight: ["400", "700", "800"],
+  variable: "--font-montserrat",
+  display: "swap",
+});
+
 export const metadata: Metadata = {
   title: "Dieselsoft",
   description: "Gestión de flota vehicular",
@@ -30,8 +38,10 @@ export default function RootLayout({
 }) {
   return (
     <html lang="es">
-      <body className={`${volvoFont.variable} ${archivo.variable} antialiased`}>
-        {/* Scripts de Google Analytics */}
+      {/* 3. Inyectas ${montserrat.variable} en el body */}
+      <body
+        className={`${volvoFont.variable} ${archivo.variable} ${montserrat.variable} antialiased`}
+      >
         <Script
           src="https://www.googletagmanager.com/gtag/js?id=G-TX18REQB8E"
           strategy="afterInteractive"

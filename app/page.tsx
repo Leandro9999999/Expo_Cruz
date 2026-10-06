@@ -49,7 +49,7 @@ export default function Home() {
             <h1 className="text-[14vw] md:text-[12rem] regular leading-[0.85] tracking-[-1 em] mb-6 drop-shadow-2xl">
               DIESELSOFT<span className="text-[0.25em] align-right">.srl</span>
             </h1>
-            <p className="font-['Montserrat'] max-w-3xl text-[10px] md:text-[13px] tracking-[0.15em] leading-relaxed uppercase opacity-85 px-4">
+            <p className="font-montserrat max-w-3xl text-[10px] md:text-[13px] tracking-[0.15em] leading-relaxed uppercase opacity-85 px-4">
               En Dieselsoft, integramos el desarrollo de hardware y software de
               vanguardia con la ingeniería mecánica pesada para optimizar,
               diagnosticar y transformar la gestión de tu flota vehicular.
@@ -127,26 +127,26 @@ export default function Home() {
                     </span>
                   </div>
 
-                  <h3 className="text-2xl tracking-[0.1em] text-white mb-1 group-hover:text-white-400 transition font-['Montserrat'] font-extrabold">
+                  <h3 className="text-2xl tracking-[0.1em] text-white mb-1 group-hover:text-white-400 transition font-montserrat font-extrabold">
                     {item.titulo}
                   </h3>
-                  <p className="text-xs font-['Montserrat'] font-extrabold text-white/50 mb-4 tracking-[0.1em]">
+                  <p className="text-xs font-montserrat font-extrabold text-white/50 mb-4 tracking-[0.1em]">
                     {item.subtitulo}
                   </p>
 
-                  <p className="text-sm text-gray-300 leading-relaxed mb-6 font-['Montserrat']">
+                  <p className="text-sm text-gray-300 leading-relaxed mb-6 font-montserrat">
                     {item.descripcion}
                   </p>
 
                   <div className="border-t border-white/10 pt-4 mb-6">
-                    <p className="text-xs font-bold text-white/80 uppercase tracking-[0.1em] mb-3 font-['Montserrat'] font-extrabold">
+                    <p className="text-xs font-bold text-white/80 uppercase tracking-[0.1em] mb-3 font-montserrat font-extrabold">
                       Capacidades clave:
                     </p>
                     <ul className="space-y-2">
                       {item.puntos.map((punto, index) => (
                         <li
                           key={index}
-                          className="flex items-center text-xs text-gray-300 tracking-[0.1em] font-['Montserrat'] font-extrabold"
+                          className="flex items-center text-xs text-gray-300 tracking-[0.1em] font-montserrat font-extrabold"
                         >
                           <span className="w-1.5 h-1.5 rounded-full bg-white mr-2.5 shrink-0" />
                           {punto}

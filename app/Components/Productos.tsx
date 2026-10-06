@@ -47,7 +47,7 @@ export default function Productos() {
             transition={{ duration: 0.18 }}
             className="w-full flex flex-col items-center"
           >
-            <h1 className="mb-12 text-center text-5xl font-['Montserrat'] font-extrabold tracking-[0.1em] text-white md:text-7xl">
+            <h1 className="mb-12 text-center text-4xl font-montserrat font-bold tracking-[0.1em] text-white md:text-7xl">
               PRODUCTOS
             </h1>
 
@@ -77,7 +77,7 @@ export default function Productos() {
                     />
                   </div>
 
-                  <h2 className="mb-4 text-xl font-['Montserrat'] font-extrabold tracking-wider text-white">
+                  <h2 className="mb-4 text-xl font-montserrat font-bold tracking-wider text-white">
                     {producto.titulo}
                   </h2>
 
@@ -117,13 +117,13 @@ export default function Productos() {
                 {/* Información del producto */}
                 <div className="flex flex-col space-y-6 text-left">
                   <div>
-                    <h1 className="text-3xl font-extrabold font-['Montserrat'] uppercase leading-tight tracking-wide text-white sm:text-4xl">
+                    <h1 className="text-3xl font-extrabold font-montserrat uppercase leading-tight tracking-wide text-white sm:text-4xl">
                       {seleccionado.titulo}
                     </h1>
                     <div className="mt-4 h-[2px] w-20 bg-white/20" />
                   </div>
 
-                  <p className="text-sm leading-relaxed tracking-wider font-['Montserrat'] text-zinc-300 md:text-base opacity-90">
+                  <p className="text-sm leading-relaxed tracking-wider font-montserrat text-zinc-300 md:text-base opacity-90">
                     {seleccionado.descripcionLarga}
                     {seleccionado.descripcionLarga2 && (
                       <span className="mt-2 block">

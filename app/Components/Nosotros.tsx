@@ -14,14 +14,14 @@ const Nosotros = () => {
       <div className="flex flex-col md:flex-row items-center gap-12 lg:gap-20">
         <div className="flex-1 space-y-8 text-left">
           <div className="space-y-6">
-            <p className="text-[14px] md:text-[16px] lg:text-[18px] font-['Montserrat'] leading-relaxed tracking-wider opacity-90">
+            <p className="text-[14px] md:text-[16px] lg:text-[18px] font-montserrat leading-relaxed tracking-wider opacity-90">
               En Dieselsoft, creemos que la digitalización no debe detenerse en
               las puertas de los hangares de servicio. Nacimos de la fusión de
               ingenieros mecánicos veteranos en equipo pesado y desarrolladores
               de software enfocados en sistemas críticos de telemetría.
             </p>
 
-            <p className="text-[14px] md:text-[16px] lg:text-[18px] font-['Montserrat'] leading-relaxed tracking-wider opacity-90">
+            <p className="text-[14px] md:text-[16px] lg:text-[18px] font-montserrat leading-relaxed tracking-wider opacity-90">
               No somos solo programadores de pantallas; nos llenamos las manos
               de grasa conociendo cada sensor de temperatura, inyector y caja de
               velocidades, para luego diseñar la lógica digital que los optimiza
