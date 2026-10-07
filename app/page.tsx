@@ -6,6 +6,7 @@ import Nosotros from "./Components/Nosotros";
 import Productos from "./Components/Productos";
 import Contacto from "./Components/Contacto";
 import Capacitaciones from "./Components/Capacitaciones";
+import Repuestos from "./Components/Repuestos";
 
 export default function Home() {
   const [activeTab, setActiveTab] = useState("inicio");
@@ -166,6 +167,8 @@ export default function Home() {
         return <Productos />;
       case "capacitaciones":
         return <Capacitaciones />;
+      case "repuestos":
+        return <Repuestos />;
 
       case "contacto":
         return <Contacto />;
@@ -253,6 +256,14 @@ export default function Home() {
             }`}
           >
             Capacitaciones
+          </button>
+          <button
+            onClick={() => handleTabChange("repuestos")}
+            className={`hover:opacity-60 transition cursor-pointer ${
+              activeTab === "repuestos" ? "border-b border-white" : ""
+            }`}
+          >
+            Venta de repuestos
           </button>
           <button
             onClick={() => handleTabChange("contacto")}
