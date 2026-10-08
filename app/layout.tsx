@@ -1,27 +1,30 @@
 import type { Metadata } from "next";
 import localFont from "next/font/local";
-import { Archivo_Black, Montserrat } from "next/font/google"; // 1. Importas Montserrat
+import { Archivo_Black, Montserrat } from "next/font/google";
 import Script from "next/script";
 import "./globals.css";
 import BackToHome from "./Components/BackToHome";
 
+// Local Font
 const volvoFont = localFont({
   src: "./fonts/beaver.ttf",
   variable: "--font-volvo",
   weight: "900",
   display: "swap",
+  preload: false, // Evita forzar preload si la fuente solo se usa en secciones específicas
 });
 
 const archivo = Archivo_Black({
   subsets: ["latin"],
   weight: "400",
   variable: "--font-archivo",
+  display: "swap",
 });
 
-// 2. Configuras Montserrat
+// Montserrat: Deja solo los pesos que utilizas activamente en el proyecto
 const montserrat = Montserrat({
   subsets: ["latin"],
-  weight: ["400", "700", "800"],
+  weight: ["400", "700"], // Reducido a los pesos realmente utilizados
   variable: "--font-montserrat",
   display: "swap",
 });
@@ -38,7 +41,6 @@ export default function RootLayout({
 }) {
   return (
     <html lang="es">
-      {/* 3. Inyectas ${montserrat.variable} en el body */}
       <body
         className={`${volvoFont.variable} ${archivo.variable} ${montserrat.variable} antialiased`}
       >
@@ -54,8 +56,8 @@ export default function RootLayout({
             gtag('config', 'G-TX18REQB8E');
           `}
         </Script>
-        <BackToHome />
 
+        <BackToHome />
         {children}
       </body>
     </html>

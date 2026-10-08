@@ -1,14 +1,26 @@
-import { useCallback, useEffect, useState } from "react";
+import { useCallback, useEffect, useMemo, useState } from "react";
 import Image from "next/image";
 import { motion, AnimatePresence } from "framer-motion";
 import { LISTA_PRODUCTOS, Producto } from "../data/productos";
 
 const WHATSAPP_NUMERO = "59178361900";
 
+type CategoriaFiltro = "todos" | "hardware" | "software";
+
 export default function Productos() {
   const [seleccionado, setSeleccionado] = useState<Producto | null>(null);
   const [indiceImagen, setIndiceImagen] = useState(0);
   const [modalAbierto, setModalAbierto] = useState(false);
+  const [filtroCategoria, setFiltroCategoria] =
+    useState<CategoriaFiltro>("todos");
+
+  // Filtrado reactivo de los productos
+  const productosFiltrados = useMemo(() => {
+    if (filtroCategoria === "todos") return LISTA_PRODUCTOS;
+    return LISTA_PRODUCTOS.filter(
+      (prod) => prod.categoria?.toLowerCase() === filtroCategoria,
+    );
+  }, [filtroCategoria]);
 
   const siguienteImagen = useCallback(() => {
     if (!seleccionado) return;
@@ -47,46 +59,103 @@ export default function Productos() {
             transition={{ duration: 0.18 }}
             className="w-full flex flex-col items-center"
           >
-            <h1 className="mb-12 text-center text-4xl font-montserrat font-bold tracking-[0.1em] text-white md:text-7xl">
+            <h1 className="mb-6 text-center text-4xl font-montserrat font-bold tracking-[0.1em] text-white md:text-7xl">
               PRODUCTOS
             </h1>
 
-            <section className="grid w-full grid-cols-1 gap-8 md:grid-cols-3">
-              {LISTA_PRODUCTOS.map((producto, index) => (
-                <motion.button
-                  key={producto.id}
-                  type="button"
-                  initial={{ opacity: 0, y: 10 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.18, delay: index * 0.03 }}
-                  whileHover={{ y: -4, scale: 1.01 }}
-                  whileTap={{ scale: 0.98 }}
-                  onClick={() => {
-                    setSeleccionado(producto);
-                    setIndiceImagen(0);
-                  }}
-                  className="group flex cursor-pointer flex-col items-center rounded-[2rem] border border-white/10 bg-black/30 p-8 text-center backdrop-blur-md transition-all duration-150 hover:bg-white/10"
+            {/* ================= COMBOBOX / FILTRO ================= */}
+            <div className="mb-10 flex w-full max-w-xs items-center justify-center">
+              <div className="relative w-full">
+                <select
+                  value={filtroCategoria}
+                  onChange={(e) =>
+                    setFiltroCategoria(e.target.value as CategoriaFiltro)
+                  }
+                  className="w-full appearance-none rounded-xl border border-white/20 bg-black/40 px-5 py-3 text-sm font-semibold tracking-wider text-white shadow-lg backdrop-blur-md transition-all duration-200 hover:border-white/40 focus:border-white focus:outline-none cursor-pointer"
                 >
-                  <div className="relative mb-6 h-48 w-full overflow-hidden rounded-2xl bg-white p-4">
-                    <Image
-                      src={producto.imagenes[0]}
-                      alt={producto.titulo}
-                      fill
-                      sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
-                      className="object-contain p-4 transition-transform duration-200 group-hover:scale-105"
-                    />
-                  </div>
+                  <option value="todos" className="bg-zinc-900 text-white">
+                    Todos los productos
+                  </option>
+                  <option value="hardware" className="bg-zinc-900 text-white">
+                    Hardware
+                  </option>
+                  <option value="software" className="bg-zinc-900 text-white">
+                    Software
+                  </option>
+                </select>
 
-                  <h2 className="mb-4 text-xl font-montserrat font-bold tracking-wider text-white">
-                    {producto.titulo}
-                  </h2>
+                {/* Ícono de flecha hacia abajo */}
+                <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center px-4 text-white/70">
+                  <svg
+                    className="h-4 w-4 fill-current"
+                    xmlns="http://www.w3.org/2000/svg"
+                    viewBox="0 0 20 20"
+                  >
+                    <path d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" />
+                  </svg>
+                </div>
+              </div>
+            </div>
 
-                  <p className="text-xs leading-relaxed tracking-widest text-zinc-300 opacity-70">
-                    {producto.descripcionCorta}
-                  </p>
-                </motion.button>
-              ))}
+            {/* GRID DE PRODUCTOS */}
+            <section className="grid w-full grid-cols-1 gap-8 md:grid-cols-3">
+              <AnimatePresence>
+                {productosFiltrados.map((producto, index) => (
+                  <motion.button
+                    layout
+                    key={producto.id}
+                    type="button"
+                    initial={{ opacity: 0, scale: 0.95 }}
+                    animate={{ opacity: 1, scale: 1 }}
+                    exit={{ opacity: 0, scale: 0.95 }}
+                    transition={{ duration: 0.18, delay: index * 0.02 }}
+                    whileHover={{ y: -4, scale: 1.01 }}
+                    whileTap={{ scale: 0.98 }}
+                    onClick={() => {
+                      setSeleccionado(producto);
+                      setIndiceImagen(0);
+                    }}
+                    className="group relative flex cursor-pointer flex-col items-center rounded-[2.5rem] border border-white/10 bg-black/40 p-6 text-center backdrop-blur-md transition-all duration-150 hover:bg-white/10"
+                  >
+                    {/* Cabecera ajustada para que el badge no se corte en la esquina */}
+                    <div className="mb-3 flex w-full justify-end">
+                      {producto.categoria && (
+                        <span className="rounded-full border border-white/20 bg-white/10 px-3 py-1 text-[10px] font-bold uppercase tracking-widest text-zinc-300">
+                          {producto.categoria}
+                        </span>
+                      )}
+                    </div>
+
+                    {/* Contenedor de la imagen (mantiene tu estilo y fondo blanco) */}
+                    <div className="relative mb-6 h-48 w-full overflow-hidden rounded-2xl bg-white p-4">
+                      <Image
+                        src={producto.imagenes[0]}
+                        alt={producto.titulo}
+                        fill
+                        sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                        className="object-contain p-4 transition-transform duration-200 group-hover:scale-105"
+                      />
+                    </div>
+
+                    {/* Título */}
+                    <h2 className="mb-4 text-xl font-montserrat font-bold tracking-wider text-white">
+                      {producto.titulo}
+                    </h2>
+
+                    {/* Texto de acción o descripción */}
+                    <p className="text-xs tracking-widest text-zinc-400">
+                      {producto.descripcionCorta || "Más información"}
+                    </p>
+                  </motion.button>
+                ))}
+              </AnimatePresence>
             </section>
+
+            {productosFiltrados.length === 0 && (
+              <p className="mt-12 text-zinc-400 text-sm">
+                No se encontraron productos en esta categoría.
+              </p>
+            )}
           </motion.div>
         ) : (
           /* ================= DETALLE DEL PRODUCTO ================= */
@@ -106,7 +175,6 @@ export default function Productos() {
               ← VOLVER A PRODUCTOS
             </button>
 
-            {/* Contenedor con el mismo estilo de las tarjetas */}
             <motion.section
               initial={{ opacity: 0, scale: 0.98 }}
               animate={{ opacity: 1, scale: 1 }}
