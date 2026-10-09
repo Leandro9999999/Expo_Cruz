@@ -79,7 +79,7 @@ export default function Capacitaciones() {
                     <h2 className="font-montserrat text-2xl font-black tracking-tight text-white sm:text-3xl">
                       {item.titulo}
                     </h2>
-                    <p className="mt-1 font-montserrat text-xs font-bold uppercase tracking-widest text-emerald-400/90">
+                    <p className="mt-1 font-montserrat text-xs font-bold uppercase tracking-widest text-white/90">
                       {item.subtitulo}
                     </p>
 
@@ -133,7 +133,7 @@ export default function Capacitaciones() {
                       <ul className="grid grid-cols-1 gap-1.5 font-montserrat text-xs text-white/80">
                         {item.contenido.map((punto, index) => (
                           <li key={index} className="flex items-start gap-2">
-                            <span className="mt-1.5 h-1.5 w-1.5 shrink-0 rounded-full bg-emerald-400" />
+                            <span className="mt-1.5 h-1.5 w-1.5 shrink-0 rounded-full bg-white" />
                             <span>{punto}</span>
                           </li>
                         ))}
