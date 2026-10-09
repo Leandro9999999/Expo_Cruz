@@ -29,7 +29,6 @@ export default function Capacitaciones() {
           const mensajeWhatsApp = encodeURIComponent(
             `¡Hola Dieselsoft! Quiero información y reservar mi cupo para:\n\n` +
               `Curso: ${item.titulo}\n` +
-              `Inicio: ${item.fechaInicio}\n` +
               `Modalidad: ${item.modalidad}${item.lugar ? ` (${item.lugar})` : ""}\n` +
               `¿Me podrían compartir los datos de pago para confirmar mi reserva?`,
           );

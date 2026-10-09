@@ -59,7 +59,7 @@ export default function Productos() {
             transition={{ duration: 0.18 }}
             className="w-full flex flex-col items-center"
           >
-            <h1 className="mb-6 text-center text-4xl font-montserrat font-bold tracking-[0.1em] text-white md:text-7xl">
+            <h1 className="mb-6 text-center text-4xl font-montserrat font-bold tracking-[0.1em] text-white md:text-6xl">
               PRODUCTOS
             </h1>
 
