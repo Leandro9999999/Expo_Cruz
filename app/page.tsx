@@ -7,6 +7,7 @@ import Productos from "./Components/Productos";
 import Contacto from "./Components/Contacto";
 import Capacitaciones from "./Components/Capacitaciones";
 import Repuestos from "./Components/Repuestos";
+import Servicios from "./Components/Servicios";
 
 export default function Home() {
   const [activeTab, setActiveTab] = useState("inicio");
@@ -68,100 +69,7 @@ export default function Home() {
         return <Nosotros />;
 
       case "servicios":
-        const serviciosDieselsoft = [
-          {
-            id: "01",
-            titulo: "Diagnóstico Electrónico & ECM",
-            subtitulo: "Ingeniería de Motor & Telemetría",
-            descripcion:
-              "Soporte especializado en la lectura, interpretación y resolución de códigos de falla (DTC) en unidades de control electrónico. Realizamos reconfiguración de parámetros de inyección, pruebas de rendimiento en tiempo real y diagnóstico integral para flotas de carga pesada y maquinaria diésel.",
-            puntos: [
-              "Ajuste de parámetros ECM/EDC",
-              "Lectura de sensores en vivo",
-              "Análisis de fallas intermitentes",
-            ],
-            tag: "Soporte Técnico Especializado",
-          },
-          {
-            id: "02",
-            titulo: "Software & Soluciones Digitales",
-            subtitulo: "Ecosistema Propietario para Flotas",
-            descripcion:
-              "Desarrollo e integración de herramientas informáticas diseñadas exclusivamente para la industria del transporte. Implementamos plataformas de gestión de mantenimiento, catálogo y cotización de repuestos mediante código/chasis (DieselParts) y guías técnicas avanzadas para asistencia en ruta.",
-            puntos: [
-              "Gestión de flota y mantenimiento",
-              "Telemetría y control de repuestos",
-              "Apps especializadas (FH-4 Expert)",
-            ],
-            tag: "Desarrollo Tecnológico",
-          },
-          {
-            id: "03",
-            titulo: "Hardware & Equipamiento de Taller",
-            subtitulo: "Intersoluciones Multimarca",
-            descripcion:
-              "Suministro, calibración y puesta en marcha de interfaces de diagnóstico profesional, reprogramadores de centralitas y herramientas físicas multimarca. Proveemos infraestructura tecnológica a talleres mecánicos y empresas con flota propia para autonomía en sus reparaciones.",
-            puntos: [
-              "Equipos e interfaces Jaltest & Dimsport",
-              "Conectores y arneses industriales",
-              "Capacitación en uso de herramientas",
-            ],
-            tag: "Equipamiento Pro",
-          },
-        ];
-
-        return (
-          <motion.div
-            initial={{ opacity: 0, x: 50 }}
-            animate={{ opacity: 1, x: 0 }}
-            className="grid grid-cols-1 lg:grid-cols-3 gap-8 px-4 sm:px-6 md:px-10 py-4"
-          >
-            {serviciosDieselsoft.map((item) => (
-              <div
-                key={item.id}
-                className="relative p-6 sm:p-8 bg-gradient-to-b from-white/10 to-white/5 border border-white/10 rounded-2xl hover:border-white-500/50 hover:bg-white/10 transition-all duration-300 flex flex-col justify-between group shadow-xl"
-              >
-                <div>
-                  <div className="flex justify-between items-center mb-4">
-                    <span className="text-2xl font-black text-white/20 group-hover:text-white-500/40 transition">
-                      {item.id}
-                    </span>
-                  </div>
-
-                  <h3 className="text-2xl tracking-[0.1em] text-white mb-1 group-hover:text-white-400 transition font-montserrat font-extrabold">
-                    {item.titulo}
-                  </h3>
-                  <p className="text-xs font-montserrat font-extrabold text-white/50 mb-4 tracking-[0.1em]">
-                    {item.subtitulo}
-                  </p>
-
-                  <p className="text-sm text-gray-300 leading-relaxed mb-6 font-montserrat">
-                    {item.descripcion}
-                  </p>
-
-                  <div className="border-t border-white/10 pt-4 mb-6">
-                    <p className="text-xs font-bold text-white/80 uppercase tracking-[0.1em] mb-3 font-montserrat font-extrabold">
-                      Capacidades clave:
-                    </p>
-                    <ul className="space-y-2">
-                      {item.puntos.map((punto, index) => (
-                        <li
-                          key={index}
-                          className="flex items-center text-xs text-gray-300 tracking-[0.1em] font-montserrat font-extrabold"
-                        >
-                          <span className="w-1.5 h-1.5 rounded-full bg-white mr-2.5 shrink-0" />
-                          {punto}
-                        </li>
-                      ))}
-                    </ul>
-                  </div>
-                </div>
-
-                <div className="pt-4 border-t border-white/5 flex items-center justify-between"></div>
-              </div>
-            ))}
-          </motion.div>
-        );
+        return <Servicios />;
 
       case "productos":
         return <Productos />;

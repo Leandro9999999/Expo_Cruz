@@ -191,4 +191,15 @@ export const LISTA_PRODUCTOS: Producto[] = [
       "/img/PROTECTOR/7.png",
     ],
   },
+
+  {
+    id: "Kit de diagnóstico para camiones Volvo",
+    titulo: "Kit de diagnóstico para camiones Volvo",
+    descripcionCorta: "Más información",
+    descripcionLarga: "",
+    categoria: "hardware",
+    videoYoutube: "https://youtu.be/1lORK0VV78k?si=VZv-InPc4Er27Enw",
+
+    imagenes: [],
+  },
 ];

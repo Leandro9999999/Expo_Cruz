@@ -14,8 +14,8 @@ export interface Capacitacion {
   fechaInicio: string;
   horario: string;
   duracion: string;
-  precioTotal: number; // En USD
-  reserva: number; // En USD
+  precioTotal: number;
+  reserva: number;
   estado: "disponible" | "terminado";
   imagen: string;
   contenido: string[];
