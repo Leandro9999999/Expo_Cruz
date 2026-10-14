@@ -11,8 +11,18 @@ export default function Productos() {
   const [seleccionado, setSeleccionado] = useState<Producto | null>(null);
   const [indiceImagen, setIndiceImagen] = useState(0);
   const [modalAbierto, setModalAbierto] = useState(false);
+  const [modalVideoAbierto, setModalVideoAbierto] = useState(false);
   const [filtroCategoria, setFiltroCategoria] =
     useState<CategoriaFiltro>("todos");
+
+  // Convierte enlace de YouTube al formato embed para el iframe
+  const getYoutubeEmbedUrl = (url: string) => {
+    if (!url) return "";
+    const match = url.match(
+      /(?:youtu\.be\/|youtube\.com\/(?:embed\/|v\/|watch\?v=|watch\?.+&v=))([\w-]{11})/,
+    );
+    return match ? `https://www.youtube.com/embed/${match[1]}?autoplay=1` : url;
+  };
 
   // Filtrado reactivo de los productos
   const productosFiltrados = useMemo(() => {
@@ -36,15 +46,18 @@ export default function Productos() {
 
   useEffect(() => {
     const manejarTeclado = (evento: KeyboardEvent) => {
+      if (evento.key === "Escape") {
+        if (modalAbierto) setModalAbierto(false);
+        if (modalVideoAbierto) setModalVideoAbierto(false);
+      }
       if (!modalAbierto) return;
-      if (evento.key === "Escape") setModalAbierto(false);
       if (evento.key === "ArrowRight") siguienteImagen();
       if (evento.key === "ArrowLeft") anteriorImagen();
     };
 
     window.addEventListener("keydown", manejarTeclado);
     return () => window.removeEventListener("keydown", manejarTeclado);
-  }, [modalAbierto, siguienteImagen, anteriorImagen]);
+  }, [modalAbierto, modalVideoAbierto, siguienteImagen, anteriorImagen]);
 
   return (
     <main className="mx-auto flex w-full max-w-7xl flex-col items-center px-4 py-6 font-sans">
@@ -241,11 +254,11 @@ export default function Productos() {
                         ) : null,
                     )}
 
+                    {/* BOTÓN VER VIDEO (Abre el modal) */}
                     {seleccionado.videoYoutube && (
-                      <a
-                        href={seleccionado.videoYoutube}
-                        target="_blank"
-                        rel="noopener noreferrer"
+                      <button
+                        type="button"
+                        onClick={() => setModalVideoAbierto(true)}
                         className="inline-flex items-center justify-center gap-2 rounded-xl border border-white/10 bg-white/5 px-4 py-3 text-xs font-bold uppercase tracking-widest text-white backdrop-blur-sm transition-colors duration-150 hover:bg-white/10"
                       >
                         <Image
@@ -256,7 +269,7 @@ export default function Productos() {
                           className="h-4 w-4"
                         />
                         <span>Ver Video</span>
-                      </a>
+                      </button>
                     )}
                   </div>
                 </div>
@@ -346,6 +359,55 @@ export default function Productos() {
                 </div>
               </div>
             </motion.section>
+
+            {/* MODAL EN FORMA DE TARJETA PARA EL VIDEO */}
+            <AnimatePresence>
+              {modalVideoAbierto && seleccionado.videoYoutube && (
+                <div className="fixed inset-0 z-50 flex items-center justify-center p-4">
+                  {/* Fondo oscuro con desenfoque (clic afuera para cerrar) */}
+                  <motion.div
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    exit={{ opacity: 0 }}
+                    onClick={() => setModalVideoAbierto(false)}
+                    className="absolute inset-0 bg-black/80 backdrop-blur-md"
+                  />
+
+                  {/* Tarjeta del reproductor */}
+                  <motion.div
+                    initial={{ opacity: 0, scale: 0.95, y: 15 }}
+                    animate={{ opacity: 1, scale: 1, y: 0 }}
+                    exit={{ opacity: 0, scale: 0.95, y: 15 }}
+                    transition={{ duration: 0.2 }}
+                    className="relative z-10 w-full max-w-4xl overflow-hidden rounded-2xl border border-white/10 bg-zinc-950 p-4 shadow-2xl sm:p-6"
+                  >
+                    <div className="mb-4 flex items-center justify-between">
+                      <h3 className="text-sm font-bold uppercase tracking-wider text-white">
+                        {seleccionado.titulo}
+                      </h3>
+                      <button
+                        type="button"
+                        onClick={() => setModalVideoAbierto(false)}
+                        className="flex h-8 w-8 items-center justify-center rounded-full bg-white/10 text-zinc-300 transition-colors hover:bg-white/20 hover:text-white"
+                        aria-label="Cerrar video"
+                      >
+                        ✕
+                      </button>
+                    </div>
+
+                    <div className="relative aspect-video w-full overflow-hidden rounded-xl border border-white/5 bg-black">
+                      <iframe
+                        src={getYoutubeEmbedUrl(seleccionado.videoYoutube)}
+                        title={`Video de ${seleccionado.titulo}`}
+                        className="h-full w-full border-0"
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                        allowFullScreen
+                      />
+                    </div>
+                  </motion.div>
+                </div>
+              )}
+            </AnimatePresence>
           </motion.div>
         )}
       </AnimatePresence>

@@ -196,10 +196,17 @@ export const LISTA_PRODUCTOS: Producto[] = [
     id: "Kit de diagnóstico para camiones Volvo",
     titulo: "Kit de diagnóstico para camiones Volvo",
     descripcionCorta: "Más información",
-    descripcionLarga: "",
+    descripcionLarga:
+      "Kit de diagnóstico profesional para vehículos pesados Volvo que incluye interfaz Vocom I con protector de goma, cables de conexión con adaptador OBD-II y una laptop semi-ruda Getac S410 para escaneo y programación en taller o campo.",
     categoria: "hardware",
     videoYoutube: "https://youtu.be/1lORK0VV78k?si=VZv-InPc4Er27Enw",
 
-    imagenes: [],
+    imagenes: [
+      "/img/KIT DE DIAGNOSTICO VOCOM I/KIT DE DIAGNOSTICO VOCOM I.png",
+      "/img/KIT DE DIAGNOSTICO VOCOM I/CABLES.jpeg",
+      "/img/KIT DE DIAGNOSTICO VOCOM I/GETAC S410.png",
+      "/img/KIT DE DIAGNOSTICO VOCOM I/PROTECTOR OBD.png",
+      "/img/KIT DE DIAGNOSTICO VOCOM I/VOCOM I.png",
+    ],
   },
 ];
