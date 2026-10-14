@@ -26,6 +26,12 @@ export default function Contacto() {
       icon: "/icon/youtube.png",
       detail: "Canal Oficial",
     },
+    {
+      name: "instagram",
+      url: "https://www.instagram.com/dieselsoftteam/",
+      icon: "/icon/social.png",
+      detail: "Canal Oficial",
+    },
   ];
 
   return (
