@@ -20,14 +20,14 @@ export const serviciosDieselsoft: Servicio[] = [
   {
     id: "01",
     categoria: "Diagnóstico & Electrónica",
-    titulo: "Diagnóstico Electrónico & ECM",
-    subtitulo: "Ingeniería de Motor & Telemetría",
+    titulo: "Diagnóstico  & Sincronización",
+    subtitulo: "Calibración de Sistemas & Puesta a Punto",
     descripcion:
-      "Soporte especializado en la lectura, interpretación y resolución de códigos de falla (DTC) en unidades de control electrónico. Realizamos reconfiguración de parámetros de inyección, pruebas de rendimiento en tiempo real y diagnóstico integral para flotas de carga pesada y maquinaria diésel.",
+      "Servicio especializado en la sincronización de sistemas electrónicos, calibración de componentes de motor y diagnóstico profundo de centralitas. Aseguramos la correcta comunicación entre módulos, la sincronización precisa de inyección y la puesta a punto general para optimizar el rendimiento y la eficiencia.",
     puntos: [
-      "Ajuste de parámetros ECM/EDC",
-      "Lectura de sensores en vivo",
-      "Análisis de fallas intermitentes",
+      "Sincronización de sistemas y módulos electrónicos",
+      "Calibración y puesta a punto de inyección",
+      "Verificación de parámetros y tiempos de respuesta",
     ],
     videos: [
       {
@@ -66,16 +66,25 @@ export const serviciosDieselsoft: Servicio[] = [
   },
   {
     id: "03",
-    categoria: "Equipamiento & Taller",
-    titulo: "Hardware & Equipamiento de Taller",
-    subtitulo: "Intersoluciones Multimarca",
+    categoria: "Servicios de Taller",
+    titulo: "Servicios & Trabajo de Taller",
+    subtitulo: "Mantenimiento y Reparación Especializada",
     descripcion:
-      "Suministro, calibración y puesta en marcha de interfaces de diagnóstico profesional, reprogramadores de centralitas y herramientas físicas multimarca. Proveemos infraestructura tecnológica a talleres mecánicos y empresas con flota propia para autonomía en sus reparaciones.",
+      "Servicios integrales de mantenimiento preventivo, correctivo y reparación especializada para vehículos pesados y flotas. Ejecutamos diagnósticos avanzados, reparación de componentes e intervenciones técnicas directas en instalaciones equipadas para garantizar la máxima operatividad.",
     puntos: [
-      "Equipos e interfaces Jaltest & Dimsport",
-      "Conectores y arneses industriales",
-      "Capacitación en uso de herramientas",
+      "Mantenimiento preventivo y correctivo de flotas",
+      "Reparación electromecánica y diagnóstico de fallas",
+      "Puesta a punto y mantenimiento de componentes críticos",
     ],
-    videos: [],
+    videos: [
+      {
+        id: "v-01",
+        titulo: "Reparación de Cajas Volvo I-Shift",
+
+        descripcion:
+          "¿Problemas con el cambio de marchas o ruidos en la transmisión? Recupera la potencia y eficiencia de tu camión Volvo con nuestro servicio técnico experto en cajas I-Shift. ¡Agenda tu evaluación hoy mismo!",
+        videoUrl: "https://youtu.be/88J5StTdehg?si=9NW5MLMcPKez4_Ng",
+      },
+    ],
   },
 ];
