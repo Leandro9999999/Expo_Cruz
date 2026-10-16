@@ -14,6 +14,10 @@ const Nosotros = () => {
       <div className="flex flex-col md:flex-row items-center gap-12 lg:gap-20">
         <div className="flex-1 space-y-8 text-left">
           <div className="space-y-6">
+            <h2 className="text-3xl md:text-4xl lg:text-5xl font-volvo uppercase tracking-wider font-bold text-white">
+              Sobre Nosotros
+            </h2>
+
             <p className="text-[14px] md:text-[16px] lg:text-[18px] font-montserrat leading-relaxed tracking-wider opacity-90">
               En Dieselsoft, creemos que la digitalización no debe detenerse en
               las puertas de los hangares de servicio. Nacimos de la fusión de
