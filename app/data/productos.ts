@@ -162,6 +162,7 @@ export const LISTA_PRODUCTOS: Producto[] = [
       "/img/getac/3.png",
       "/img/getac/4.png",
     ],
+    videoYoutube: "https://youtu.be/6hX71V0aCtA?si=vQQpgMy8HKr_Pktl",
   },
   {
     id: "INTERFAZ SCANIA VCI3",

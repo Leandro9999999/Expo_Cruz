@@ -14,6 +14,10 @@ export default function Productos() {
   const [modalVideoAbierto, setModalVideoAbierto] = useState(false);
   const [filtroCategoria, setFiltroCategoria] =
     useState<CategoriaFiltro>("todos");
+  const [manualActivo, setManualActivo] = useState<{
+    url: string;
+    titulo: string;
+  } | null>(null);
 
   // Convierte enlace de YouTube al formato embed para el iframe
   const getYoutubeEmbedUrl = (url: string) => {
@@ -49,6 +53,7 @@ export default function Productos() {
       if (evento.key === "Escape") {
         if (modalAbierto) setModalAbierto(false);
         if (modalVideoAbierto) setModalVideoAbierto(false);
+        if (manualActivo) setManualActivo(null);
       }
       if (!modalAbierto) return;
       if (evento.key === "ArrowRight") siguienteImagen();
@@ -57,7 +62,13 @@ export default function Productos() {
 
     window.addEventListener("keydown", manejarTeclado);
     return () => window.removeEventListener("keydown", manejarTeclado);
-  }, [modalAbierto, modalVideoAbierto, siguienteImagen, anteriorImagen]);
+  }, [
+    modalAbierto,
+    modalVideoAbierto,
+    manualActivo,
+    siguienteImagen,
+    anteriorImagen,
+  ]);
 
   return (
     <main className="mx-auto flex w-full max-w-7xl flex-col items-center px-4 py-6 font-sans">
@@ -182,7 +193,12 @@ export default function Productos() {
           >
             <button
               type="button"
-              onClick={() => setSeleccionado(null)}
+              onClick={() => {
+                setSeleccionado(null);
+                setModalAbierto(false);
+                setModalVideoAbierto(false);
+                setManualActivo(null);
+              }}
               className="mb-6 self-start text-sm font-bold uppercase tracking-[0.1em] text-zinc-400 transition-colors duration-150 hover:text-white"
             >
               ← VOLVER A PRODUCTOS
@@ -235,11 +251,15 @@ export default function Productos() {
                     {[seleccionado.manualPdf1, seleccionado.manualPdf2].map(
                       (manual, indice) =>
                         manual ? (
-                          <a
+                          <button
                             key={manual}
-                            href={manual}
-                            target="_blank"
-                            rel="noopener noreferrer"
+                            type="button"
+                            onClick={() =>
+                              setManualActivo({
+                                url: manual,
+                                titulo: `Manual ${indice + 1}`,
+                              })
+                            }
                             className="inline-flex items-center justify-center gap-2 rounded-xl border border-white/10 bg-white/5 px-4 py-3 text-xs font-bold uppercase tracking-widest text-white backdrop-blur-sm transition-colors duration-150 hover:bg-white/10"
                           >
                             <Image
@@ -250,7 +270,7 @@ export default function Productos() {
                               className="h-4 w-4"
                             />
                             <span>Manual {indice + 1}</span>
-                          </a>
+                          </button>
                         ) : null,
                     )}
 
@@ -451,6 +471,52 @@ export default function Productos() {
               />
             </motion.div>
           </motion.div>
+        )}
+      </AnimatePresence>
+
+      <AnimatePresence>
+        {manualActivo && seleccionado && (
+          <div className="fixed inset-0 z-50 flex items-center justify-center p-4">
+            {/* Fondo oscuro con desenfoque (clic afuera para cerrar) */}
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              onClick={() => setManualActivo(null)}
+              className="absolute inset-0 bg-black/80 backdrop-blur-md"
+            />
+
+            {/* Tarjeta del visor PDF */}
+            <motion.div
+              initial={{ opacity: 0, scale: 0.95, y: 15 }}
+              animate={{ opacity: 1, scale: 1, y: 0 }}
+              exit={{ opacity: 0, scale: 0.95, y: 15 }}
+              transition={{ duration: 0.2 }}
+              className="relative z-10 w-full max-w-4xl overflow-hidden rounded-2xl border border-white/10 bg-zinc-950 p-4 shadow-2xl sm:p-6"
+            >
+              <div className="mb-4 flex items-center justify-between">
+                <h3 className="text-sm font-bold uppercase tracking-wider text-white">
+                  {seleccionado.titulo} — {manualActivo.titulo}
+                </h3>
+                <button
+                  type="button"
+                  onClick={() => setManualActivo(null)}
+                  className="flex h-8 w-8 items-center justify-center rounded-full bg-white/10 text-zinc-300 transition-colors hover:bg-white/20 hover:text-white"
+                  aria-label="Cerrar manual"
+                >
+                  ✕
+                </button>
+              </div>
+
+              <div className="relative h-[75vh] w-full overflow-hidden rounded-xl border border-white/5 bg-black">
+                <iframe
+                  src={manualActivo.url}
+                  title={`${manualActivo.titulo} de ${seleccionado.titulo}`}
+                  className="h-full w-full border-0"
+                />
+              </div>
+            </motion.div>
+          </div>
         )}
       </AnimatePresence>
     </main>

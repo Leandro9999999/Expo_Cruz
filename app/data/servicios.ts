@@ -85,6 +85,15 @@ export const serviciosDieselsoft: Servicio[] = [
           "¿Problemas con el cambio de marchas o ruidos en la transmisión? Recupera la potencia y eficiencia de tu camión Volvo con nuestro servicio técnico experto en cajas I-Shift. ¡Agenda tu evaluación hoy mismo!",
         videoUrl: "https://youtu.be/88J5StTdehg?si=9NW5MLMcPKez4_Ng",
       },
+
+      {
+        id: "v-02",
+        titulo: "Mantenimiento de transmisión en camión pesado: paso a paso",
+
+        descripcion:
+          "Aprende el proceso completo de inspección, desmontaje, cambio de aceite, revisión de embrague y ajuste de la caja de cambios de un camión pesado. Una guía práctica y directa desde el taller para evitar fallas costosas y alargar la vida útil de tu flota.",
+        videoUrl: "https://youtu.be/LggR2autEw0?si=DlKyQFlgTjeeZit5",
+      },
     ],
   },
 ];
