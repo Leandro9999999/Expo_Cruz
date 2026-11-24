@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useMemo, useState, useRef } from "react";
+import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import Image from "next/image";
 import { motion, AnimatePresence } from "framer-motion";
 import { LISTA_PRODUCTOS, Producto } from "../data/productos";
@@ -87,8 +87,12 @@ function VisorPdf({ url }: { url: string }) {
         if (cancelado || !contenedorRef.current) return;
 
         contenedorRef.current.innerHTML = "";
-        const anchoContenedor = contenedorRef.current.clientWidth || 320;
-        const dpr = Math.min(window.devicePixelRatio || 1, 2);
+        const anchoContenedor =
+          contenedorRef.current.clientWidth || window.innerWidth;
+        const factorNitidez = Math.min(
+          Math.max(window.devicePixelRatio || 1, 2),
+          3,
+        );
 
         for (let num = 1; num <= pdf.numPages; num++) {
           if (cancelado) return;
@@ -96,15 +100,15 @@ function VisorPdf({ url }: { url: string }) {
           if (cancelado || !contenedorRef.current) return;
 
           const viewportBase = pagina.getViewport({ scale: 1 });
-          const escala = (anchoContenedor / viewportBase.width) * dpr;
+          const escala = (anchoContenedor / viewportBase.width) * factorNitidez;
           const viewport = pagina.getViewport({ scale: escala });
 
           const canvas = document.createElement("canvas");
           const contexto = canvas.getContext("2d");
           if (!contexto) continue;
 
-          canvas.width = viewport.width;
-          canvas.height = viewport.height;
+          canvas.width = Math.floor(viewport.width);
+          canvas.height = Math.floor(viewport.height);
           canvas.style.width = "100%";
           canvas.style.height = "auto";
           canvas.className = "rounded-lg bg-white shadow-md";
@@ -130,7 +134,7 @@ function VisorPdf({ url }: { url: string }) {
   return (
     <div className="relative h-[75vh] w-full overflow-y-auto overflow-x-hidden rounded-xl border border-white/5 bg-zinc-900/80 p-2 sm:p-4">
       {cargando && (
-        <div className="flex h-full items-center justify-center">
+        <div className="absolute inset-0 z-10 flex items-center justify-center">
           <span className="text-xs font-bold uppercase tracking-widest text-zinc-400">
             Cargando manual...
           </span>
@@ -138,7 +142,7 @@ function VisorPdf({ url }: { url: string }) {
       )}
 
       {error && (
-        <div className="flex h-full flex-col items-center justify-center gap-3 text-center">
+        <div className="absolute inset-0 z-10 flex flex-col items-center justify-center gap-3 text-center">
           <p className="text-xs uppercase tracking-wider text-zinc-400">
             No se pudo mostrar la vista previa del PDF.
           </p>
@@ -147,7 +151,7 @@ function VisorPdf({ url }: { url: string }) {
 
       <div
         ref={contenedorRef}
-        className={`flex w-full flex-col items-center gap-3 ${cargando || error ? "hidden" : ""}`}
+        className={`flex w-full flex-col items-center gap-3 ${cargando || error ? "opacity-0" : "opacity-100"}`}
       />
     </div>
   );
@@ -619,8 +623,7 @@ export default function Productos() {
           </motion.div>
         )}
       </AnimatePresence>
-
-      <iframe>
+      <AnimatePresence>
         {manualActivo && seleccionado && (
           <div className="fixed inset-0 z-50 flex items-center justify-center p-4">
             {/* Fondo oscuro con desenfoque (clic afuera para cerrar) */}
@@ -654,17 +657,11 @@ export default function Productos() {
                 </button>
               </div>
 
-              <div className="relative h-[75vh] w-full overflow-hidden rounded-xl border border-white/5 bg-black">
-                <iframe
-                  src={manualActivo.url}
-                  title={`${manualActivo.titulo} de ${seleccionado.titulo}`}
-                  className="h-full w-full border-0"
-                />
-              </div>
+              <VisorPdf url={manualActivo.url} />
             </motion.div>
           </div>
         )}
-      </iframe>
+      </AnimatePresence>
     </main>
   );
 }
