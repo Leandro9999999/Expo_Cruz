@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useMemo, useState } from "react";
+import { useCallback, useEffect, useMemo, useState, useRef } from "react";
 import Image from "next/image";
 import { motion, AnimatePresence } from "framer-motion";
 import { LISTA_PRODUCTOS, Producto } from "../data/productos";
@@ -6,6 +6,152 @@ import { LISTA_PRODUCTOS, Producto } from "../data/productos";
 const WHATSAPP_NUMERO = "59178361900";
 
 type CategoriaFiltro = "todos" | "hardware" | "software";
+
+interface PdfViewport {
+  width: number;
+  height: number;
+}
+
+interface PdfPage {
+  getViewport: (params: { scale: number }) => PdfViewport;
+  render: (params: {
+    canvasContext: CanvasRenderingContext2D;
+    viewport: PdfViewport;
+  }) => { promise: Promise<void> };
+}
+
+interface PdfDocument {
+  numPages: number;
+  getPage: (num: number) => Promise<PdfPage>;
+}
+
+interface PdfJsLib {
+  GlobalWorkerOptions: { workerSrc: string };
+  getDocument: (url: string) => { promise: Promise<PdfDocument> };
+}
+
+const obtenerPdfJs = (): Promise<PdfJsLib> => {
+  return new Promise((resolve, reject) => {
+    const win = window as Window & { pdfjsLib?: PdfJsLib };
+    if (win.pdfjsLib) {
+      resolve(win.pdfjsLib);
+      return;
+    }
+
+    const scriptExistente = document.querySelector<HTMLScriptElement>(
+      'script[data-pdfjs="true"]',
+    );
+    if (scriptExistente) {
+      scriptExistente.addEventListener("load", () => {
+        if (win.pdfjsLib) resolve(win.pdfjsLib);
+        else reject(new Error("No se pudo inicializar PDF.js"));
+      });
+      scriptExistente.addEventListener("error", () =>
+        reject(new Error("Error cargando PDF.js")),
+      );
+      return;
+    }
+
+    const script = document.createElement("script");
+    script.src =
+      "https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js";
+    script.async = true;
+    script.dataset.pdfjs = "true";
+    script.onload = () => {
+      if (win.pdfjsLib) resolve(win.pdfjsLib);
+      else reject(new Error("No se pudo inicializar PDF.js"));
+    };
+    script.onerror = () => reject(new Error("Error cargando PDF.js"));
+    document.head.appendChild(script);
+  });
+};
+
+function VisorPdf({ url }: { url: string }) {
+  const contenedorRef = useRef<HTMLDivElement>(null);
+  const [cargando, setCargando] = useState(true);
+  const [error, setError] = useState(false);
+
+  useEffect(() => {
+    let cancelado = false;
+
+    const renderizarPdf = async () => {
+      setCargando(true);
+      setError(false);
+
+      try {
+        const pdfjsLib = await obtenerPdfJs();
+        pdfjsLib.GlobalWorkerOptions.workerSrc =
+          "https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js";
+
+        const pdf = await pdfjsLib.getDocument(url).promise;
+        if (cancelado || !contenedorRef.current) return;
+
+        contenedorRef.current.innerHTML = "";
+        const anchoContenedor = contenedorRef.current.clientWidth || 320;
+        const dpr = Math.min(window.devicePixelRatio || 1, 2);
+
+        for (let num = 1; num <= pdf.numPages; num++) {
+          if (cancelado) return;
+          const pagina = await pdf.getPage(num);
+          if (cancelado || !contenedorRef.current) return;
+
+          const viewportBase = pagina.getViewport({ scale: 1 });
+          const escala = (anchoContenedor / viewportBase.width) * dpr;
+          const viewport = pagina.getViewport({ scale: escala });
+
+          const canvas = document.createElement("canvas");
+          const contexto = canvas.getContext("2d");
+          if (!contexto) continue;
+
+          canvas.width = viewport.width;
+          canvas.height = viewport.height;
+          canvas.style.width = "100%";
+          canvas.style.height = "auto";
+          canvas.className = "rounded-lg bg-white shadow-md";
+
+          await pagina.render({ canvasContext: contexto, viewport }).promise;
+          if (!cancelado && contenedorRef.current) {
+            contenedorRef.current.appendChild(canvas);
+          }
+        }
+      } catch {
+        if (!cancelado) setError(true);
+      } finally {
+        if (!cancelado) setCargando(false);
+      }
+    };
+
+    renderizarPdf();
+    return () => {
+      cancelado = true;
+    };
+  }, [url]);
+
+  return (
+    <div className="relative h-[75vh] w-full overflow-y-auto overflow-x-hidden rounded-xl border border-white/5 bg-zinc-900/80 p-2 sm:p-4">
+      {cargando && (
+        <div className="flex h-full items-center justify-center">
+          <span className="text-xs font-bold uppercase tracking-widest text-zinc-400">
+            Cargando manual...
+          </span>
+        </div>
+      )}
+
+      {error && (
+        <div className="flex h-full flex-col items-center justify-center gap-3 text-center">
+          <p className="text-xs uppercase tracking-wider text-zinc-400">
+            No se pudo mostrar la vista previa del PDF.
+          </p>
+        </div>
+      )}
+
+      <div
+        ref={contenedorRef}
+        className={`flex w-full flex-col items-center gap-3 ${cargando || error ? "hidden" : ""}`}
+      />
+    </div>
+  );
+}
 
 export default function Productos() {
   const [seleccionado, setSeleccionado] = useState<Producto | null>(null);
@@ -474,7 +620,7 @@ export default function Productos() {
         )}
       </AnimatePresence>
 
-      <AnimatePresence>
+      <iframe>
         {manualActivo && seleccionado && (
           <div className="fixed inset-0 z-50 flex items-center justify-center p-4">
             {/* Fondo oscuro con desenfoque (clic afuera para cerrar) */}
@@ -518,7 +664,7 @@ export default function Productos() {
             </motion.div>
           </div>
         )}
-      </AnimatePresence>
+      </iframe>
     </main>
   );
 }
