@@ -91,15 +91,25 @@ export default function Home() {
       {/* Fondo fijo adaptable a móvil y escritorio */}
       <div className="fixed inset-0 -z-10 pointer-events-none">
         <div className="absolute inset-0 bg-black/65 z-10" />
+
+        {/* Fondo solo para móvil */}
+        <Image
+          src="/img/tu-imagen-movil.png"
+          alt="Dieselsoft"
+          fill
+          className="object-cover object-center md:hidden"
+          priority
+        />
+
+        {/* Fondo solo para escritorio */}
         <Image
           src="/img/green.png"
           alt="Dieselsoft"
           fill
-          className="object-cover object-[25%_center] md:object-center"
+          className="hidden md:block object-cover object-center"
           priority
         />
       </div>
-
       <nav className="relative z-30 flex items-center justify-between px-6 py-6 md:px-16">
         <div className="flex items-center gap-4">
           <button
@@ -179,7 +189,7 @@ export default function Home() {
               activeTab === "contacto" ? "border-b border-white" : ""
             }`}
           >
-            CONTACTO
+            CONTACTOz
           </button>
         </div>
       </nav>
