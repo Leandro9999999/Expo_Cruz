@@ -94,7 +94,7 @@ export default function Home() {
 
         {/* Fondo solo para móvil */}
         <Image
-          src="/img/tu-imagen-movil.png"
+          src="/img/green.png"
           alt="Dieselsoft"
           fill
           className="object-cover object-center md:hidden"
