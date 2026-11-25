@@ -89,12 +89,13 @@ export default function Home() {
   return (
     <main className="relative min-h-screen w-full flex flex-col text-white overflow-x-hidden font-[family-name:var(--font-volvo)]">
       {/* Fondo fijo adaptable a móvil y escritorio */}
-      <div className="fixed inset-0 -z-10 pointer-events-none">
+      <div className="fixed top-0 left-0 w-full h-[100lvh] -z-10 pointer-events-none overflow-hidden">
         <div className="absolute inset-0 bg-black/65 z-10" />
         <Image
           src="/img/green.png"
           alt="Dieselsoft"
           fill
+          sizes="100vw"
           className="object-cover object-[25%_center] md:object-center"
           priority
         />
@@ -179,7 +180,7 @@ export default function Home() {
               activeTab === "contacto" ? "border-b border-white" : ""
             }`}
           >
-            CONTACTOz
+            CONTACTOS
           </button>
         </div>
       </nav>
